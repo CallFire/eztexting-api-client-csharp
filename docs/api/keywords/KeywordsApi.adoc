@@ -1,0 +1,53 @@
+= Keywords API
+
+=== Check Keyword Availability
+Check whether a Keyword is available to rent on Ez Texting's short code. Please note, we will check availability
+ for the country your account is set to.
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    System.out.println("Is available: " +  client.keywordsApi().checkAvailability("SUSHI"));
+
+=== Rent a keyword
+Rents a Keyword for use on Ez Texting's short code in the country your account is set to send messages to.
+ You may rent a Keyword using a credit card you have stored in your Ez Texting account, or you may pass credit
+ card details when you call the API. Example how to rent a keyword with stored credit card:
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    Keyword keyword = client.keywordsApi().rent("GLASSES", "1111");
+    System.out.println("rent keyword: " + keyword);
+
+another option you can provide credit card details in request:
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    CreditCard creditCard = new CreditCard();
+    creditCard.setFirstName("Winnie");
+    creditCard.setLastName("The Pooh");
+    creditCard.setStreet("Hollow tree, under the name of Mr. Sanders");
+    creditCard.setCity("Hundred Acre Woods");
+    creditCard.setState("New York");
+    creditCard.setZip("12345");
+    creditCard.setCountry("US");
+    creditCard.setType(CreditCard.CreditCardType.VISA);
+    creditCard.setNumber("4111111111111111");
+    creditCard.setSecurityCode("123");
+    creditCard.setExpirationMonth("10");
+    creditCard.setExpirationYear("2017");
+    Keyword keyword = client.keywordsApi().rent("GLASSES", creditCard);
+    System.out.println("rent keyword: " + keyword);
+
+=== Setup a keyword (update)
+Configures an active Keyword for use on Ez Texting's short code in the country your account is set to send messages to.
+This operation is the same as update
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    Keyword keyword = new Keyword();
+    keyword.setKeyword("SUSHI");
+    keyword.setConfirmMessage(new SimpleMessage(DeliveryMethod.EXPRESS, "Subject", "New message"));
+    Keyword updated = client.keywordsApi().setup(keyword);
+    System.out.println("Updated keyword: " + updated);
+
+=== Cancel a keyword
+Cancels an active Keyword on Ez Texting's short code in the country your account is set to send messages to.
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    client.keywordsApi().cancel("GLASSES");

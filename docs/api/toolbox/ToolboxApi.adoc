@@ -1,0 +1,8 @@
+= Toolbox API
+
+=== Carrier lookup
+Returns the wireless carrier of a valid mobile phone number (US & Canada)
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    CarrierLookupResponse response = client.toolboxApi().carrierLookup("2132212384");
+    System.out.println("lookup response: " + response);

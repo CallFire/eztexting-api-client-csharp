@@ -1,0 +1,62 @@
+= Messaging API
+
+=== Sending SMS/MMS messages
+Send SMS/MMS messages via the short code 313131 (393939 In Canada) to a single phone number or an array of phone numbers.
+Example how to send SMS message:
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    SmsMessage msg = new SmsMessage();
+    msg.setMessage("SMS message text");
+    msg.setSubject("Any subject");
+    msg.setDeliveryMethod(DeliveryMethod.STANDARD);
+    msg.setPhoneNumbers(Arrays.asList("2132212384", "2132212385"));
+    msg.setStampToSend(DateUtils.addMinutes(new Date(), 5));
+    SmsMessage response = client.messagingApi().send(msg);
+    System.out.println("send sms message response: " + response);
+
+or MMS message:
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    MmsMessage msg = new MmsMessage();
+    msg.setMessage("EzTexting MMS message");
+    msg.setSubject("Just subject");
+    // media file ID in your account's media library
+    msg.setFileId(3139L);
+    // recipients
+    msg.setPhoneNumbers(Arrays.asList("2132212384", "2132212385"));
+    // set StampToSend if we want to schedule this message
+    msg.setStampToSend(DateUtils.addMinutes(new Date(), 15));
+    MmsMessage response = client.messagingApi().send(msg);
+    System.out.println("send mms message response: " + response);
+
+=== Sending voice broadcast messages
+Send voice broadcast messages to an array of phone numbers or a Group in your Ez Texting account. You can use
+ a file stored in your Ez Texting account as the source, or include the URL of a compatible file in the request.
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    VoiceMessage msg = new VoiceMessage();
+    msg.setName("voice broadcast");
+    // outbound phone number
+    msg.setCallerPhoneNumber("2132212384");
+    msg.setVoiceSource("http://file-storage.com/sound.mp3");
+    // or add file from media library
+    // msg.setVoiceFile("greeting_sound");
+    msg.setPhoneNumbers(Arrays.asList("2132212384", "2132212385"));
+    // send the message in 20 minutes
+    msg.setStampToSend(DateUtils.addMinutes(new Date(), 20));
+    VoiceMessage response = client.messagingApi().send(msg);
+    System.out.println("voice message response: " + response);
+
+=== Delivery reports
+Get a report for specific delivery status of a message you have sent.
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    DeliveryReport report = client.messagingApi().getReport(56491730L);
+    System.out.println("Delivery Report: " + report);
+
+=== Detailed delivery reports
+Get a report for specific delivery status of a message you have sent and the phone numbers for that delivery type.
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    List<Long> report = client.messagingApi().getDetailedReport(56491730L, DeliveryStatus.BOUNCED);
+    System.out.println("Detailed Delivery Reports: " + report);

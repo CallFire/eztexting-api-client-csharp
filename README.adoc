@@ -1,0 +1,15 @@
+= EzTexting API REST client
+
+Java client for EzTexting platform REST API. See link:docs/GettingStarted.adoc[Getting Started]
+ page for setup instructions.
+
+.*Requirements:*
+* Java 7+
+
+.*Table of contents*
+* link:docs/GettingStarted.adoc[Getting Started]
+* link:docs/api/ApiExamples.adoc[API code examples]
+* link:https://www.eztexting.com/developers/sms-api-documentation/rest[REST endpoints documentation]
+* Have a question ?
+** link:https://www.eztexting.com/help[EzTexting Help]
+** link:http://stackoverflow.com/questions/tagged/callfire[Ask on stackoverflow]

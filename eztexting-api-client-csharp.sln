@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{263165CF-2B65-4C89-BB4A-BBD04040CB19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EzTextingApiClient", "src\EzTextingApiClient\EzTextingApiClient.csproj", "{668B6685-F139-454A-9306-BE79589DFCED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EzTextingApiClient.Tests", "src\EzTextingApiClient\EzTextingApiClient.Tests\EzTextingApiClient.Tests.csproj", "{6BEBD79A-3DB2-4AD3-8D49-ABED451BFD73}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{668B6685-F139-454A-9306-BE79589DFCED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{668B6685-F139-454A-9306-BE79589DFCED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{668B6685-F139-454A-9306-BE79589DFCED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{668B6685-F139-454A-9306-BE79589DFCED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BEBD79A-3DB2-4AD3-8D49-ABED451BFD73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BEBD79A-3DB2-4AD3-8D49-ABED451BFD73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BEBD79A-3DB2-4AD3-8D49-ABED451BFD73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BEBD79A-3DB2-4AD3-8D49-ABED451BFD73}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{668B6685-F139-454A-9306-BE79589DFCED} = {263165CF-2B65-4C89-BB4A-BBD04040CB19}
+		{6BEBD79A-3DB2-4AD3-8D49-ABED451BFD73} = {263165CF-2B65-4C89-BB4A-BBD04040CB19}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		version = 1.0.0
+	EndGlobalSection
+EndGlobal

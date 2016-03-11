@@ -1,0 +1,81 @@
+= Inbox API
+
+=== Get a message
+Get a single incoming text messages in your Ez Texting Inbox
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    InboxMessage message = client.inboxApi().getMessage(15168146L);
+    System.out.println("inbox message: " + message);
+
+=== Get multiple messages
+Get some incoming text messages in your Ez Texting Inbox depending on search criteria
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    GetMessagesRequest request = GetMessagesRequest.create()
+        // property to sort by. Available values: ReceivedOn, PhoneNumber, Message
+        .sortBy(SortProperty.RECEIVED_ON)
+        // get messages from particular folder
+        .folder(5656L)
+        // messages with "car service" text
+        .search("car service")
+        .messageType(MessageType.SMS)
+        // sorting order asc/desc
+        .sortType(SortType.ASC)
+        // number of results to retrieve. By default, 10 most recent incoming messages are retrieved.
+        .itemsPerPage(5)
+        // page of results to retrieve. 1st page is returned by default
+        .page(2)
+        .build();
+    List<InboxMessage> messages = client.inboxApi().getMessages(request);
+    System.out.println("inbox messages: " + messages);
+
+=== Move message to a folder
+Moves an incoming text message in your Ez Texting Inbox to a specified folder. You may include multiple
+ Message IDs to move multiple messages to same folder.
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    client.inboxApi().moveMessage(123L, 456L);
+    // or move several messages
+    client.inboxApi().moveMessages(Arrays.asList(123L, 124L, 125L, 126L), 456L);
+
+=== Delete a message
+Delete an incoming text message in your Ez Texting Inbox
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    client.inboxApi().deleteMessage(354421L);
+
+=== Create a folder
+Create a folder in your Ez Texting Inbox
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    Folder created = client.inboxApi().createFolder("Work messages");
+    System.out.println("Created folder: " + created);
+
+=== Update a folder
+Update the name of a folder in your Ez Texting Inbox
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    Folder folder = new Folder();
+    folder.setId(34345L);
+    folder.setName("New name");
+    client.inboxApi().updateFolder(folder);
+
+=== Get a folder
+Get a single folder in your Ez Texting Inbox
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    Folder folder = client.inboxApi().getFolder(343434L);
+    System.out.println(folder);
+
+=== Get all folders
+Get all folders in your Ez Texting Inbox
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    List<Folder> folders = client.inboxApi().getFolders();
+    System.out.println("Get all folders: " + folders);
+
+=== Delete a folder
+Delete a folder in your Ez Texting Inbox
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    client.inboxApi().deleteFolder(354421L);

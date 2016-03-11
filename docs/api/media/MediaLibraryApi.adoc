@@ -1,0 +1,36 @@
+= Media Library API
+
+=== Create
+Create a new media file that will be stored in your Ez Texting media library
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    MediaFile media = client.mediaLibraryApi().create("http://your-storage.com/media.mp3");
+    System.out.println(media);
+
+=== Get one media file
+Get a single file stored in your Ez Texting media library.
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    Group group = client.groupsApi().get(343434L);
+    System.out.println(group);
+
+=== Get multiple files
+Get a list of media files stored in your Ez Texting media library.
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    CommonGetRequest request = CommonGetRequest.create()
+        // sort asc/desc
+        .sortType(SortType.ASC)
+        // number of results to retrieve. By default, first 10 groups sorted in alphabetical order are retrieved.
+        .itemsPerPage(30)
+        // page of results to retrieve
+        .page(5)
+        .build();
+    List<MediaFile> files = client.mediaLibraryApi().get(request);
+    System.out.println("multiple files: " + files);
+
+=== Delete
+Delete file in your Ez Texting media library
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    client.mediaLibraryApi().delete(354421L);

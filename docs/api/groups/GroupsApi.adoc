@@ -1,0 +1,49 @@
+= Groups API
+
+=== Create
+Example how to create a new group that will be stored in your Ez Texting account
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    Group group = new Group();
+    group.setName("Friends");
+    group.setNote("my friends numbers");
+    Group stored = client.groupsApi().create(group);
+    System.out.println(stored);
+
+=== Update
+Example how to update a group stored in your Ez Texting account
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    Group group = new Group();
+    group.setId(202020L);
+    group.setName("New Friends");
+    Group updated = client.groupsApi().update(created);
+    System.out.println(updated);
+
+=== Get one group
+Get a single group stored in your Ez Texting account.
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    Group group = client.groupsApi().get(343434L);
+    System.out.println(group);
+
+=== Get multiple groups
+Get a list of groups stored in your Ez Texting account.
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    GetGroupsRequest request = GetGroupsRequest.create()
+        // sort asc/desc
+        .sortType(SortType.ASC)
+        // number of results to retrieve. By default, first 10 groups sorted in alphabetical order are retrieved.
+        .itemsPerPage(30)
+        // page of results to retrieve
+        .page(5)
+        .build();
+    List<Group> groups = client.groupsApi().get(request);
+    System.out.println("multiple groups: " + groups);
+
+=== Delete
+Delete a group that is stored in your Ez Texting account
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    client.groupsApi().delete(354421L);

@@ -1,0 +1,61 @@
+= Contacts API
+
+=== Create
+Example how to create a new contact that will be stored in your Ez Texting contact list
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    Contact contact = new Contact();
+    contact.setFirstName("Piglet");
+    contact.setLastName("Notail");
+    contact.setPhoneNumber("2123456786");
+    contact.setEmail("piglet@small-animals-alliance.org");
+    contact.setNote("It is hard to be brave, when you are only a Very Small Animal.");
+    contact.setGroups(Arrays.asList("Friends", "Neighbors"));
+    Contact stored = client.contactsApi().create(contact);
+    System.out.println(stored);
+
+=== Update
+Example how to update a contact stored in your Ez Texting contact list
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    Contact contact = new Contact();
+    contact.setId("4f0b5720734fada368000000");
+    contact.setPhoneNumber("2123456787");
+    Contact updated = client.contactsApi().update(contact);
+    System.out.println(updated);
+
+=== Get one contact
+Get a single contact stored in your Ez Texting contact list.
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    Contact contact = client.contactsApi().get("4f0b5720734fada368000000");
+    System.out.println(contact);
+
+=== Get multiple contacts
+Get a list of contacts stored in your Ez Texting contact list.
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    GetContactsRequest request = GetContactsRequest.create()
+        // sorting asc, desc
+        .sortType(SortType.ASC)
+        // number of results to retrieve. By default, 10 most recently added contacts are retrieved.
+        .itemsPerPage(2)
+        // page of results to retrieve
+        .page(0)
+        // search contacts by first name / last name / phone number
+        .query(QueryProperty.FIRST_NAME)
+        // source of contacts, available values: 'Unknown', 'Manually Added', 'Upload', 'Web Widget', 'API', 'Keyword'
+        .source(SourceType.MANUAL)
+        // name of the group the contacts belong to
+        .group("Friends")
+        // property to sort by. Available values: PhoneNumber, FirstName, LastName, CreatedAt
+        .sortBy(SortProperty.CREATED_AT)
+        .build();
+    List<Contact> contacts = client.contactsApi().get(request);
+    System.out.println("multiple contacts: " + contacts);
+
+=== Delete
+Delete a contact stored in your Ez Texting contact list
+[source,java]
+    EzTextingClient client = new EzTextingClient("api_login", "api_password");
+    client.contactsApi().delete("4f0b5720734fada368000000");
