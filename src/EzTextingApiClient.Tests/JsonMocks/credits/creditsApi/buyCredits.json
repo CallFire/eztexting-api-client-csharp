@@ -1,0 +1,14 @@
+{
+  "Response": {
+    "Status": "Success",
+    "Code": 201,
+    "Entry": {
+      "BoughtCredits": 1000,
+      "Amount": 9.45,
+      "Discount": 0.55,
+      "PlanCredits": 10,
+      "AnytimeCredits": 1200,
+      "TotalCredits": 1210
+    }
+  }
+}

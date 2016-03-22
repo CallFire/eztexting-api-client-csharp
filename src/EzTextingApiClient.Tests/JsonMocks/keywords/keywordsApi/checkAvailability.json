@@ -1,0 +1,10 @@
+{
+  "Response": {
+    "Status": "Success",
+    "Code": 200,
+    "Entry": {
+      "Keyword": "honey",
+      "Available": true
+    }
+  }
+}

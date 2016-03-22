@@ -1,0 +1,33 @@
+{
+  "Response": {
+    "Code": 201,
+    "Entry": {
+      "AlternateReply": {
+        "Message": "You already joined but thanks for texting in again.",
+        "MessageTypeID": 1,
+        "Subject": "subject"
+      },
+      "ConfirmMessage": {
+        "Message": "Do you really want to join? Reply y or yes to confirm.",
+        "MessageTypeID": 1,
+        "Subject": "subject"
+      },
+      "ContactGroupIDs": [
+        "Friends",
+        "Family"
+      ],
+      "EnableAlternateReply": false,
+      "EnableDoubleOptIn": false,
+      "ForwardEmail": "email@email.com",
+      "ForwardUrl": "http://url",
+      "ID": 202307,
+      "JoinMessage": {
+        "Message": "Thank you for joining our text list. For Help Reply HELP. Msg&data rates may apply.",
+        "MessageTypeID": 1,
+        "Subject": "subject"
+      },
+      "Keyword": "EZAYW69417"
+    },
+    "Status": "Success"
+  }
+}

@@ -9,7 +9,7 @@ namespace EzTextingApiClient.Tests
         [Test()]
         public void TestCase()
         {
-            new EzTextingApiClient.MyClass();
+
         }
     }
 }

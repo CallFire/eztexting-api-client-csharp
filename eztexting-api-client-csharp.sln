@@ -5,7 +5,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{263165CF-2B6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EzTextingApiClient", "src\EzTextingApiClient\EzTextingApiClient.csproj", "{668B6685-F139-454A-9306-BE79589DFCED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EzTextingApiClient.Tests", "src\EzTextingApiClient\EzTextingApiClient.Tests\EzTextingApiClient.Tests.csproj", "{6BEBD79A-3DB2-4AD3-8D49-ABED451BFD73}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EzTextingApiClient.Tests", "src\EzTextingApiClient.Tests\EzTextingApiClient.Tests.csproj", "{6BEBD79A-3DB2-4AD3-8D49-ABED451BFD73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

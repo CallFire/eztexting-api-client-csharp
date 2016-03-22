@@ -1,0 +1,28 @@
+{
+  "Response": {
+    "Status": "Success",
+    "Code": 201,
+    "Entry": {
+      "ID": 828,
+      "Name": "My voice campaign",
+      "VoiceFile": "yourfile.wav",
+      "CallerPhonenumber": "2123456789",
+      "RecipientsCount": 3,
+      "Credits": 6,
+      "StampToSend": "05-16-2011 5:44 PM",
+      "PhoneNumbers": [
+        "2123456787",
+        "2123456788"
+      ],
+      "LocalOptOuts": [
+        "2123456786"
+      ],
+      "GlobalOptOuts": [
+        "2123456785"
+      ],
+      "Groups": [
+        "Honey lovers"
+      ]
+    }
+  }
+}

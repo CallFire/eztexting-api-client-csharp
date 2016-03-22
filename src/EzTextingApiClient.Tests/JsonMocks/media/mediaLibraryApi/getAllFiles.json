@@ -1,0 +1,18 @@
+{
+  "Response": {
+    "Status": "Success",
+    "Code": 200,
+    "Entries": [
+      {
+        "ID": 26,
+        "Name": "1356508b.gif",
+        "Path": "https://eztxting.s3.amazonaws.com/243678/files/1356508b_1407243956.gif"
+      },
+      {
+        "ID": 18,
+        "Name": "anim_screenslide.mp4",
+        "Path": "https://eztxting.s3.amazonaws.com/243678/mms/anim_screenslide_1407147019.mp4"
+      }
+    ]
+  }
+}

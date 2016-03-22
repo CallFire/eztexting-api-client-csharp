@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -8,6 +8,7 @@
     <RootNamespace>EzTextingApiClient</RootNamespace>
     <AssemblyName>EzTextingApiClient</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ReleaseVersion>1.0.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,19 +30,73 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Configuration" />
     <Reference Include="RestSharp">
       <HintPath>..\..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyClass.cs" />
+    <Compile Include="Api\Common\Model\EzTextingModel.cs" />
+    <Compile Include="Api\Common\Model\EzTextingResponse.cs" />
+    <Compile Include="Api\Common\Model\GetRequest.cs" />
+    <Compile Include="Api\Common\Model\QueryParamAsNumber.cs" />
+    <Compile Include="Api\Common\Model\SortType.cs" />
+    <Compile Include="Api\Contacts\Model\Contact.cs" />
+    <Compile Include="Api\Contacts\Model\SourceType.cs" />
+    <Compile Include="Api\Groups\Model\GetGroupsRequest.cs" />
+    <Compile Include="Api\Groups\Model\SortProperty.cs" />
+    <Compile Include="Api\Messaging\MessagingApi.cs" />
+    <Compile Include="Api\Messaging\Model\AbstractMessage.cs" />
+    <Compile Include="Api\Messaging\Model\DeliveryMethod.cs" />
+    <Compile Include="Api\Messaging\Model\DeliveryReport.cs" />
+    <Compile Include="Api\Messaging\Model\DeliveryStatus.cs" />
+    <Compile Include="Api\Messaging\Model\MmsMessage.cs" />
+    <Compile Include="Api\Messaging\Model\ReportItem.cs" />
+    <Compile Include="Api\Messaging\Model\SimpleMessage.cs" />
+    <Compile Include="Api\Messaging\Model\SmsMessage.cs" />
+    <Compile Include="Api\Messaging\Model\TextMessage.cs" />
+    <Compile Include="Api\Messaging\Model\VoiceMessage.cs" />
+    <Compile Include="Auth\IAuthentication.cs" />
+    <Compile Include="Auth\RequestParamAuth.cs" />
+    <Compile Include="Brand.cs" />
+    <Compile Include="EzTextingClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validate.cs" />
+    <Compile Include="EzTextingApiException.cs" />
+    <Compile Include="EzTextingClientException.cs" />
+    <Compile Include="EzTextingContractResolver.cs" />
+    <Compile Include="EzTextingJsonConverter.cs" />
+    <Compile Include="ClientConstants.cs" />
+    <Compile Include="ClientUtils.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="ModelValidationException.cs" />
+    <Compile Include="RequestFilter.cs" />
+    <Compile Include="RestApiClient.cs" />
+    <Compile Include="WrappedObjectConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="eztexting-api-client.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Api" />
+    <Folder Include="Api\Common" />
+    <Folder Include="Api\Common\Model" />
+    <Folder Include="Api\Contacts" />
+    <Folder Include="Api\Contacts\Model" />
+    <Folder Include="Api\Groups" />
+    <Folder Include="Api\Groups\Model" />
+    <Folder Include="Api\Messaging" />
+    <Folder Include="Api\Messaging\Model" />
+    <Folder Include="Auth" />
   </ItemGroup>
 </Project>
