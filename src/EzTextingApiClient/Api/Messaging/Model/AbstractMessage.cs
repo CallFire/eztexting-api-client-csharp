@@ -10,10 +10,10 @@ namespace EzTextingApiClient.Api.Messaging.Model
         [JsonProperty("ID")] public long? Id;
         public long? RecipientsCount;
         public long? Credits;
-        public DateTime? StampToSend;
-        public IList<string> Groups { get; }
-        public IList<string> PhoneNumbers { get; }
-        public IList<string> LocalOptOuts { get; }
-        public IList<string> GlobalOptOuts { get; }
+        public DateTime? StampToSend { get; set; }
+        public IList<string> Groups { get; set; }
+        public IList<string> PhoneNumbers { get; set; }
+        public IList<string> LocalOptOuts { get; set; }
+        public IList<string> GlobalOptOuts { get; set; }
     }
 }

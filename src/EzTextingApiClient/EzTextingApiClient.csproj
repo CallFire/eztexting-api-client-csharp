@@ -88,15 +88,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Api" />
-    <Folder Include="Api\Common" />
-    <Folder Include="Api\Common\Model" />
-    <Folder Include="Api\Contacts" />
-    <Folder Include="Api\Contacts\Model" />
-    <Folder Include="Api\Groups" />
-    <Folder Include="Api\Groups\Model" />
-    <Folder Include="Api\Messaging" />
-    <Folder Include="Api\Messaging\Model" />
-    <Folder Include="Auth" />
+    <Folder Include="Api\" />
+    <Folder Include="Api\Common\" />
+    <Folder Include="Api\" />
+    <Folder Include="Api\Contacts\" />
+    <Folder Include="Api\" />
+    <Folder Include="Api\Groups\" />
+    <Folder Include="Api\" />
+    <Folder Include="Api\Messaging\" />
   </ItemGroup>
 </Project>

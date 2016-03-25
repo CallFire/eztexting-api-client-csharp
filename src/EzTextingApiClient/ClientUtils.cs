@@ -10,6 +10,7 @@ using System.Text;
 using EzTextingApiClient.Api.Common.Model;
 using EzTextingApiClient.Api.Messaging.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using RestSharp;
 using RestSharp.Extensions;
 
@@ -141,7 +142,8 @@ namespace EzTextingApiClient
 
         private static void BuildQueryParam(PropertyInfo pi, object value, StringBuilder paramsString)
         {
-            if (value == null) return;
+            if (value == null)
+                return;
             var paramName = GetParamName(pi);
             if (value is ICollection)
             {
@@ -171,7 +173,14 @@ namespace EzTextingApiClient
         private static object GetParamName(PropertyInfo pi)
         {
             var name = pi.Name;
-            if (pi.PropertyType == typeof(IEnumerable))
+            CustomAttributeData jsonPropertyAttr = null;
+            GetPropertyAttributes(pi).TryGetValue(typeof(JsonPropertyAttribute).Name, out jsonPropertyAttr);
+            // first constructor argument is custom property name
+            if (jsonPropertyAttr != null && jsonPropertyAttr.ConstructorArguments.Count == 1)
+            {
+                name = jsonPropertyAttr.ConstructorArguments[0].Value.ToString();
+            }
+            if (IsCollectionType(pi.PropertyType))
             {
                 name = name + "[]";
             }
@@ -216,6 +225,16 @@ namespace EzTextingApiClient
             return new string(chars);
         }
 
+        internal static bool IsCollectionType(this Type type)
+        {
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(ICollection<>))
+            {
+                return true;
+            }
+            var genericInterfaces = type.GetInterfaces().Where(t => t.IsGenericType);
+            var baseDefinitions = genericInterfaces.Select(t => t.GetGenericTypeDefinition());
+            return baseDefinitions.Any(t => t == typeof(ICollection<>));
+        }
 
         private static Dictionary<string, CustomAttributeData> GetPropertyAttributes(PropertyInfo property)
         {

@@ -7,7 +7,10 @@ namespace EzTextingApiClient.Api.Common.Model
         [JsonProperty("sortDir")]
         public SortType SortType { get; set; }
 
+        [JsonProperty("itemsPerPage")]
         public int ItemsPerPage { get; set; }
+
+        [JsonProperty("page")]
         public int Page { get; set; }
     }
 }
