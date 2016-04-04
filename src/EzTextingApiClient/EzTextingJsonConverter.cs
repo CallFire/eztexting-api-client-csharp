@@ -29,7 +29,7 @@ namespace EzTextingApiClient
                 DefaultValueHandling = DefaultValueHandling.Include,
                 ContractResolver = new EzTextingContractResolver(),
             };
-            _serializer.Converters.Add(new StringEnumConverter());
+            _serializer.Converters.Add(new DateTimeConvertor());
         }
 
         /// <summary>

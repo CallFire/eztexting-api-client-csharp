@@ -113,7 +113,7 @@ namespace EzTextingApiClient
             var path = typeof(RestApiClient).Assembly.Location;
             var config = ConfigurationManager.OpenExeConfiguration(path);
             var appSettings = (AppSettingsSection) config.GetSection("appSettings");
-            if (appSettings.Settings.Count < 5)
+            if (appSettings.Settings.Count < 4)
             {
                 throw new EzTextingClientException("Cannot read configuration file at: " + path + ".config");
             }
@@ -286,39 +286,65 @@ namespace EzTextingApiClient
         private IRestRequest CreateRestRequest(string path, Method method, EzTextingModel model = null,
             IEnumerable<KeyValuePair<string, object>> queryParams = null)
         {
-            var requestPayload = new StringBuilder(ApiBasePath);
-            requestPayload.Append(path);
-            requestPayload.Append(_authentication.AsParamString());
-            var modelQueryParams = ClientUtils.BuildQueryParams(model);
-            if (modelQueryParams.Length > 0)
-            {
-                requestPayload.Append('&');
-                requestPayload.Append(modelQueryParams);
-            }
-            if (queryParams != null)
-            {
-                requestPayload.Append('&');
-                foreach (var param in queryParams)
-                {
-                    requestPayload.Append('&')
-                        .Append(param.Key)
-                        .Append("=")
-                        .Append(param.Value.ToString().UrlEncode());
-                }
-            }
             var request = new RestRequest
             {
-                Resource = requestPayload.ToString(),
                 Method = method,
                 RequestFormat = DataFormat.Json,
-                JsonSerializer = _jsonSerializer,
+                JsonSerializer = _jsonSerializer
             };
-            if (method == Method.POST)
+            var authString = _authentication.AsParamString();
+            var requestPath = new StringBuilder(path);
+            var modelQueryParams = ClientUtils.BuildQueryParams(model);
+            var extraQueryParams = new StringBuilder();
+            if (queryParams != null)
             {
-                request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                foreach (var param in queryParams)
+                {
+                    extraQueryParams
+                        .Append(param.Key)
+                        .Append("=")
+                        .Append(param.Value.ToString().UrlEncode())
+                        .Append('&');
+                }
             }
 
+            if (method == Method.GET || method == Method.DELETE)
+            {
+                requestPath.Append('&').Append(authString);
+                CombineParameters(requestPath, modelQueryParams.ToString(), extraQueryParams.ToString());
+            }
+            else if (method == Method.POST)
+            {
+                var postBody = new StringBuilder(authString);
+                CombineParameters(postBody, modelQueryParams.ToString(), extraQueryParams.ToString());
+                request.AddParameter(ClientConstants.FormEncodedContentType, postBody.ToString(),
+                    ClientConstants.FormEncodedContentType, ParameterType.RequestBody);
+            }
+            else
+            {
+                throw new EzTextingClientException("HTTP method " + method + " isn't supported.");
+            }
+            request.AddHeader("Accept", ClientConstants.JsonContentType);
+            request.Resource = requestPath.ToString();
+
             return request;
+        }
+
+        private void CombineParameters(StringBuilder result, string paramString1, string paramString2)
+        {
+            if (paramString1.Length > 0)
+            {
+                result.Append('&');
+                result.Append(paramString1);
+                // remove trailing &
+                result.Remove(result.Length - 1, 1);
+            }
+            if (paramString2.Length > 0)
+            {
+                result.Append('&');
+                result.Append(paramString2);
+                result.Remove(result.Length - 1, 1);
+            }
         }
 
 //            // makes extra deserialization to get pretty json string, enable only in case of debugging

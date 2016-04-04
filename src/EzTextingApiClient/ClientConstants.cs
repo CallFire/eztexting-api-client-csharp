@@ -21,7 +21,10 @@ namespace EzTextingApiClient
         public const string LogDatetimePattern = "yyyy-MM-dd HH:mm:ss.fff";
 
         public const string Placeholder = "{}";
-        public const string DateFormatPattern = "MM-dd-yyyy h:mm a";
+        public const string DateFormatPattern = "MM-dd-yyyy h:mm tt";
+
+        public const string FormEncodedContentType = "application/x-www-form-urlencoded";
+        public const string JsonContentType = "application/json";
 
         public static readonly DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
     }

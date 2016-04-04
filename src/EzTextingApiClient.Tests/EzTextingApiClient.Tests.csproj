@@ -38,8 +38,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\AbstractApiTest.cs" />
+    <Compile Include="Api\Messaging\MessagingApiTest.cs" />
     <Compile Include="ClientUtilsTest.cs" />
-    <Compile Include="Test.cs" />
+    <Compile Include="Integration\AbstractIntegrationTest.cs" />
+    <Compile Include="Integration\MessagingIntegrationTest.cs" />
     <Compile Include="MockRestClient.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -78,5 +81,13 @@
       <Project>{668B6685-F139-454A-9306-BE79589DFCED}</Project>
       <Name>EzTextingApiClient</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Api\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EzTextingApiClient.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

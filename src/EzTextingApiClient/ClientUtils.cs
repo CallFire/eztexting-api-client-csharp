@@ -89,9 +89,9 @@ namespace EzTextingApiClient
         public static IList<KeyValuePair<string, object>> AsParams(string name, object value)
         {
             var queryParams = new List<KeyValuePair<string, object>>();
-            if (value is IEnumerable)
+            if (value is ICollection)
             {
-                foreach (var o in (IEnumerable) value)
+                foreach (var o in (ICollection) value)
                 {
                     queryParams.Add(new KeyValuePair<string, object>(name + "[]", o?.ToString()));
                 }
@@ -159,10 +159,15 @@ namespace EzTextingApiClient
             }
             else if (value is DateTime)
             {
-                value = (ToUnixTime((DateTime) value))/1000;
+                value = (ToUnixTime((DateTime) value)/1000);
             }
             var paramValue = GetParamValue(pi, value);
             paramsString.Append(paramName).Append("=").Append(paramValue.UrlEncode()).Append("&");
+        }
+
+        internal static string Join<T>(this string separator, ICollection<T> s)
+        {
+            return s == null ? "" : s.ToPrettyString();
         }
 
         public static long ToUnixTime(DateTime dateTime)

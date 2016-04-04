@@ -9,7 +9,7 @@ namespace EzTextingApiClient.Tests
 {
     public class MockRestClient : RestClient
     {
-        private HttpResponse MockResponse;
+        private readonly HttpResponse _mockResponse;
 
         public Ref<IRestRequest> CapturedRequest { get; set; }
 
@@ -21,7 +21,7 @@ namespace EzTextingApiClient.Tests
         public MockRestClient(IRestClient restClient, IDeserializer deserializer, HttpResponse response = null)
         {
             CapturedRequest = new Ref<IRestRequest>(null);
-            MockResponse = response ?? new HttpResponse();
+            _mockResponse = response ?? new HttpResponse();
             BaseUrl = restClient.BaseUrl;
             Authenticator = restClient.Authenticator;
             UserAgent = restClient.UserAgent;
@@ -31,7 +31,7 @@ namespace EzTextingApiClient.Tests
         public override IRestResponse Execute(IRestRequest request)
         {
             CapturedRequest.Value = request;
-            string method = Enum.GetName(typeof(Method), request.Method);
+            var method = Enum.GetName(typeof(Method), request.Method);
             return InvokePrivateExecute(request, method);
         }
 
@@ -42,28 +42,31 @@ namespace EzTextingApiClient.Tests
 
         public HttpResponse DoReturnMockResponse(IHttp http, string method)
         {
-            MockResponse.ContentType = "application/json";
-            MockResponse.ContentEncoding = "UTF-8";
-            MockResponse.StatusCode = MockResponse.StatusCode == 0 ? System.Net.HttpStatusCode.OK : MockResponse.StatusCode;
-            MockResponse.ResponseStatus = ResponseStatus.Completed;
-            return MockResponse;
+            _mockResponse.ContentType = "application/json";
+            _mockResponse.ContentEncoding = "UTF-8";
+            _mockResponse.StatusCode = _mockResponse.StatusCode == 0
+                ? System.Net.HttpStatusCode.OK
+                : _mockResponse.StatusCode;
+            _mockResponse.ResponseStatus = ResponseStatus.Completed;
+            return _mockResponse;
         }
 
         protected IRestResponse<T> InvokePrivateDeserialize<T>(IRestRequest request, IRestResponse raw)
         {
-            MethodInfo method = typeof(RestClient).GetMethod("Deserialize", BindingFlags.NonPublic | BindingFlags.Instance);
+            var method = typeof(RestClient).GetMethod("Deserialize", BindingFlags.NonPublic | BindingFlags.Instance);
             Assert.NotNull(method);
             method = method.MakeGenericMethod(typeof(T));
-            var response = (IRestResponse<T>)method.Invoke(this, new object[] { request, raw });
+            var response = (IRestResponse<T>) method.Invoke(this, new object[] {request, raw});
             return response;
         }
 
         protected IRestResponse InvokePrivateExecute(IRestRequest request, string httpMethod)
         {
-            MethodInfo method = typeof(RestClient).GetMethod("Execute", BindingFlags.NonPublic | BindingFlags.Instance);
+            var method = typeof(RestClient).GetMethod("Execute", BindingFlags.NonPublic | BindingFlags.Instance);
             Assert.NotNull(method);
-            var response = method.Invoke(this, new object[] { request, httpMethod, (Func<IHttp, string, HttpResponse>)DoReturnMockResponse });
-            return (IRestResponse)response;
+            var response = method.Invoke(this,
+                new object[] {request, httpMethod, (Func<IHttp, string, HttpResponse>) DoReturnMockResponse});
+            return (IRestResponse) response;
         }
     }
 
@@ -77,4 +80,3 @@ namespace EzTextingApiClient.Tests
         }
     }
 }
-

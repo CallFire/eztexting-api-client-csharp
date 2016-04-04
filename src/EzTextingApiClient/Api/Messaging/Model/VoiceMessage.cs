@@ -5,10 +5,10 @@ namespace EzTextingApiClient.Api.Messaging.Model
     public class VoiceMessage : AbstractMessage
     {
         [JsonProperty("CallerPhonenumber")]
-        public string CallerPhoneNumber { get; }
+        public string CallerPhoneNumber { get; set; }
 
-        public string Name { get; }
-        public string VoiceFile { get; }
-        public string VoiceSource { get; }
+        public string Name { get; set; }
+        public string VoiceFile { get; set; }
+        public string VoiceSource { get; set; }
     }
 }

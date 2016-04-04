@@ -21,9 +21,9 @@ namespace EzTextingApiClient.Api.Messaging
             this._client = client;
         }
 
-        ///
+        /// <summary>
         /// Sends SMS/MMS messages via the short code 313131 (393939 In Canada) to a single phone number or an array of phone numbers.
-        ///
+        /// </summary>
         /// <param name="message">message to send</param>
         /// <typeparam name="T">message type</typeparam>
         /// <returns>created message with additional info</returns>
@@ -46,13 +46,13 @@ namespace EzTextingApiClient.Api.Messaging
             }
         }
 
-        ///
+        /// <summary>
         /// Sends voice broadcast messages to an array of phone numbers or a Group in your Ez Texting account. You
         /// can use a file stored in your Ez Texting account as the source, or include the URL of a compatible file
         /// in the request.
-        ///
-        /// @param message voice message request
-        /// @return response object
+        /// </summary>
+        /// <param name="message">voice message request</param>
+        /// <returns>created message with additional info</returns>
         /// <exception cref="EzTextingApiException">in case error has occurred on server side, check provided error description.</exception>
         /// <exception cref="EzTextingClientException">in case error has occurred in client.</exception>
         public VoiceMessage Send(VoiceMessage message)
@@ -60,11 +60,11 @@ namespace EzTextingApiClient.Api.Messaging
             return _client.Post<VoiceMessage>(SendVoicePath, message).Entry;
         }
 
-        ///
+        /// <summary>
         /// Get a report for specific delivery status of a message you have sent.
-        ///
-        /// @param id message id
-        /// @return delivery report
+        /// </summary>
+        /// <param name="id">message id</param>
+        /// <returns>delivery report</returns>
         /// <exception cref="EzTextingApiException">in case error has occurred on server side, check provided error description.</exception>
         /// <exception cref="EzTextingClientException">in case error has occurred in client.</exception>
         public DeliveryReport GetReport(long id)
@@ -73,19 +73,19 @@ namespace EzTextingApiClient.Api.Messaging
             return _client.Get<DeliveryReport>(path).Entry;
         }
 
-        ///
+        /// <summary>
         /// Get a report for specific delivery status of a message you have sent.
-        ///
-        /// @param id     message id
-        /// @param status delivery status to sort by
-        /// @return list of possible phone numbers which have given status
+        /// </summary>
+        /// <param name="id">message id</param>
+        /// <param name="status">delivery status to sort by</param>
+        /// <returns>list of possible phone numbers which have given status</returns>
         /// <exception cref="EzTextingApiException">in case error has occurred on server side, check provided error description.</exception>
         /// <exception cref="EzTextingClientException">in case error has occurred in client.</exception>
-        public IList<long> GetDetailedReport(long id, DeliveryStatus status)
+        public IList<long?> GetDetailedReport(long id, DeliveryStatus status)
         {
             var path = DetailedReportPath.ReplaceFirst(ClientConstants.Placeholder, id.ToString());
-            var queryParams = ClientUtils.AsParams("status", status.ToString());
-            return _client.Get<long>(path, queryParams).Entries;
+            var queryParams = ClientUtils.AsParams("status", status.EnumMemberAttr());
+            return _client.Get<long?>(path, queryParams).Entries;
         }
     }
 }

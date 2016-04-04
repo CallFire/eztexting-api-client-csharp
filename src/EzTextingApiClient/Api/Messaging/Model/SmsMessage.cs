@@ -6,5 +6,8 @@
         {
             DeliveryMethod = DeliveryMethod.Express;
         }
+
+        public override string ToString() =>
+            $"SmsMessage [{base.ToString()}]";
     }
 }

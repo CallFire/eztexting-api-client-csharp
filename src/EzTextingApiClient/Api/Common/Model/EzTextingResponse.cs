@@ -8,10 +8,15 @@ namespace EzTextingApiClient.Api.Common.Model
     {
         [JsonProperty("Response")] private readonly ResponseHolder<T> _holder;
 
+        [JsonIgnore]
         public string Status => _holder.Status;
+        [JsonIgnore]
         public int Code => _holder.Code;
+        [JsonIgnore]
         public T Entry => _holder.Entry;
+        [JsonIgnore]
         public IList<T> Entries => _holder.Entries;
+        [JsonIgnore]
         public IList<string> Errors => _holder.Errors;
 
         public EzTextingResponse()

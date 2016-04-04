@@ -16,5 +16,8 @@ namespace EzTextingApiClient.Api.Messaging.Model
 
         [JsonProperty("Not Sent - Opted Out")]
         public ReportItem OptedOut { get; private set; }
+
+        public override string ToString() =>
+            $"DeliveryReport[Delivered={Delivered}, Bounced={Bounced}, NotAvailable={NotAvailable}, NoCredits={NoCredits}, OptedOut={OptedOut}]";
     }
 }

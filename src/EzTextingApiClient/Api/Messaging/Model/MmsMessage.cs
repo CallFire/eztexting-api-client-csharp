@@ -11,5 +11,8 @@ namespace EzTextingApiClient.Api.Messaging.Model
         {
             DeliveryMethod = DeliveryMethod.Mms;
         }
+
+        public override string ToString() =>
+            $"MmsMessage [{base.ToString()} FileId={FileId}]";
     }
 }

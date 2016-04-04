@@ -15,5 +15,11 @@ namespace EzTextingApiClient.Api.Messaging.Model
         public IList<string> PhoneNumbers { get; set; }
         public IList<string> LocalOptOuts { get; set; }
         public IList<string> GlobalOptOuts { get; set; }
+
+        public override string ToString() =>
+            $"AbstractMessage [Id={Id}, RecipientsCount={RecipientsCount}, Credits={Credits}, " +
+            $"StampToSend={StampToSend}, Groups={",".Join(Groups)}, " +
+            $"PhoneNumbers={",".Join(PhoneNumbers)}, LocalOptOuts={",".Join(LocalOptOuts)}, " +
+            $"GlobalOptOuts={",".Join(GlobalOptOuts)}, ";
     }
 }

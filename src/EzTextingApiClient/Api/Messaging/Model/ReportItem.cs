@@ -6,5 +6,8 @@ namespace EzTextingApiClient.Api.Messaging.Model
     {
         public long Count { get; private set; }
         public string Percentage { get; private set; }
+
+        public override string ToString() =>
+            $"ReportItem[Count={Count}, Percentage={Percentage}]";
     }
 }

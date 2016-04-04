@@ -39,7 +39,7 @@ namespace EzTextingApiClient.Tests
             Assert.That(queryParams, Is.StringContaining("Subject=" + "test subject".UrlEncode()));
             Assert.That(queryParams, Is.StringContaining("Message=" + "this is mms message".UrlEncode()));
             Assert.That(queryParams, Is.StringContaining("MessageTypeID=3"));
-            Assert.That(queryParams, Is.StringContaining("StampToSend=" + ClientUtils.ToUnixTime(now) / 1000L));
+            Assert.That(queryParams, Is.StringContaining("StampToSend=" + ClientUtils.ToUnixTime(now) / 1000));
         }
 
         [Test]
