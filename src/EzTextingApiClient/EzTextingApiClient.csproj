@@ -60,9 +60,13 @@
     <Compile Include="Api\Messaging\Model\SmsMessage.cs" />
     <Compile Include="Api\Messaging\Model\TextMessage.cs" />
     <Compile Include="Api\Messaging\Model\VoiceMessage.cs" />
+    <Compile Include="Api\Toolbox\Model\CarrierLookupResponse.cs" />
+    <Compile Include="Api\Toolbox\Model\CarrierName.cs" />
+    <Compile Include="Api\Toolbox\ToolboxApi.cs" />
     <Compile Include="Auth\IAuthentication.cs" />
     <Compile Include="Auth\RequestParamAuth.cs" />
     <Compile Include="Brand.cs" />
+    <Compile Include="CarrierNameConverter.cs" />
     <Compile Include="DateTimeConvertor.cs" />
     <Compile Include="EzTextingClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,5 +98,7 @@
     <Folder Include="Api\Contacts\" />
     <Folder Include="Api\Groups\" />
     <Folder Include="Api\Messaging\" />
+    <Folder Include="Api\Toolbox" />
+    <Folder Include="Api\Toolbox\Model" />
   </ItemGroup>
 </Project>

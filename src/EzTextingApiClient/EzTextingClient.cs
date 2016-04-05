@@ -1,5 +1,6 @@
 ﻿using System;
 using EzTextingApiClient.Api.Messaging;
+using EzTextingApiClient.Api.Toolbox;
 using EzTextingApiClient.Auth;
 using RestSharp.Authenticators;
 
@@ -34,8 +35,10 @@ namespace EzTextingApiClient
         public RestApiClient RestApiClient { get; set; }
 
         private readonly Lazy<MessagingApi> _messagingApi;
+        private readonly Lazy<ToolboxApi> _toolboxApi;
 
         public MessagingApi MessagingApi => _messagingApi.Value;
+        public ToolboxApi ToolboxApi => _toolboxApi.Value;
 
         public EzTextingClient(string username, string password) : this(Brand.Ez, username, password)
         {
@@ -46,6 +49,7 @@ namespace EzTextingApiClient
             RestApiClient = new RestApiClient(brand, new RequestParamAuth(username, password));
 
             _messagingApi = new Lazy<MessagingApi>(() => new MessagingApi(RestApiClient));
+            _toolboxApi = new Lazy<ToolboxApi>(() => new ToolboxApi(RestApiClient));
         }
     }
 }

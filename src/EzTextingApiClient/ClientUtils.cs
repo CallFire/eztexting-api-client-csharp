@@ -279,19 +279,21 @@ namespace EzTextingApiClient
         }
 
         /// <summary>
-        /// Returns enum by description attribute
+        /// Returns enum by attribute value
         /// </summary>
-        /// <param name="description">enum description attribute value</param>
+        /// <param name="value">enum item string representation</param>
         /// <returns>enum object</returns>
-        internal static T EnumFromDescription<T>(string description)
+        internal static T EnumFromString<T>(string value)
         {
             var type = typeof(T);
             if (!type.IsEnum)
-                throw new ArgumentException();
+            {
+                throw new ArgumentException("type T is not enum type");
+            }
             var fields = type.GetFields();
-            var field = fields.SelectMany(f => f.GetCustomAttributes(typeof(DescriptionAttribute), false),
-                (f, a) => new {Field = f, Att = a}).SingleOrDefault(a => ((DescriptionAttribute) a.Att)
-                    .Description == description);
+            var field = fields.SelectMany(f => f.GetCustomAttributes(typeof(EnumMemberAttribute), false),
+                (f, a) => new {Field = f, Att = a}).SingleOrDefault(a => ((EnumMemberAttribute) a.Att).Value == value);
+
             return field == null ? default(T) : (T) field.Field.GetRawConstantValue();
         }
 

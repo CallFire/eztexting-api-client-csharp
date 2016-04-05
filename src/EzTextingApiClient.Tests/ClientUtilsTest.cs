@@ -6,6 +6,7 @@ using EzTextingApiClient.Api.Messaging.Model;
 using NUnit.Framework;
 using RestSharp.Extensions;
 using System.Collections.Generic;
+using EzTextingApiClient.Api.Toolbox.Model;
 
 namespace EzTextingApiClient.Tests
 {
@@ -16,12 +17,13 @@ namespace EzTextingApiClient.Tests
         public void BuildQueryParams()
         {
             var now = DateTime.Now;
-            var mms = new MmsMessage {
+            var mms = new MmsMessage
+            {
                 FileId = 123,
                 Subject = "test subject",
                 Message = "this is mms message",
-                Groups = new List<string> { "group1", "group2", "group3" },
-                PhoneNumbers = new List<string> { "1234567890", "2345678900", "3456789000" },
+                Groups = new List<string> {"group1", "group2", "group3"},
+                PhoneNumbers = new List<string> {"1234567890", "2345678900", "3456789000"},
                 StampToSend = now
             };
 
@@ -39,13 +41,14 @@ namespace EzTextingApiClient.Tests
             Assert.That(queryParams, Is.StringContaining("Subject=" + "test subject".UrlEncode()));
             Assert.That(queryParams, Is.StringContaining("Message=" + "this is mms message".UrlEncode()));
             Assert.That(queryParams, Is.StringContaining("MessageTypeID=3"));
-            Assert.That(queryParams, Is.StringContaining("StampToSend=" + ClientUtils.ToUnixTime(now) / 1000));
+            Assert.That(queryParams, Is.StringContaining("StampToSend=" + ClientUtils.ToUnixTime(now)/1000));
         }
 
         [Test]
         public void BuildQueryParamsFromGetRequest()
         {
-            var request = new GetGroupsRequest {
+            var request = new GetGroupsRequest
+            {
                 SortBy = SortProperty.Name,
                 SortType = SortType.Asc,
                 ItemsPerPage = 10,
@@ -64,7 +67,8 @@ namespace EzTextingApiClient.Tests
         [Test]
         public void BuildQueryParamsWithBooleanAsNumber()
         {
-            var contact = new Contact {
+            var contact = new Contact
+            {
                 Email = "email@email.com",
                 OptOut = true
             };
