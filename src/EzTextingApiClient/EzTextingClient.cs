@@ -1,5 +1,6 @@
 ﻿using System;
 using EzTextingApiClient.Api.Contacts;
+using EzTextingApiClient.Api.Groups;
 using EzTextingApiClient.Api.Messaging;
 using EzTextingApiClient.Api.Toolbox;
 using EzTextingApiClient.Auth;
@@ -37,10 +38,12 @@ namespace EzTextingApiClient
 
         private readonly Lazy<MessagingApi> _messagingApi;
         private readonly Lazy<ContactsApi> _contactsApi;
+        private readonly Lazy<GroupsApi> _groupsApi;
         private readonly Lazy<ToolboxApi> _toolboxApi;
 
         public MessagingApi MessagingApi => _messagingApi.Value;
         public ContactsApi ContactsApi => _contactsApi.Value;
+        public GroupsApi GroupsApi => _groupsApi.Value;
         public ToolboxApi ToolboxApi => _toolboxApi.Value;
 
         public EzTextingClient(string username, string password) : this(Brand.Ez, username, password)
@@ -53,6 +56,7 @@ namespace EzTextingApiClient
 
             _messagingApi = new Lazy<MessagingApi>(() => new MessagingApi(RestApiClient));
             _contactsApi = new Lazy<ContactsApi>(() => new ContactsApi(RestApiClient));
+            _groupsApi = new Lazy<GroupsApi>(() => new GroupsApi(RestApiClient));
             _toolboxApi = new Lazy<ToolboxApi>(() => new ToolboxApi(RestApiClient));
         }
     }

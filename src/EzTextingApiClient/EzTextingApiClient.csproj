@@ -51,7 +51,9 @@
     <Compile Include="Api\Contacts\Model\QueryProperty.cs" />
     <Compile Include="Api\Contacts\Model\SortProperty.cs" />
     <Compile Include="Api\Contacts\Model\SourceType.cs" />
+    <Compile Include="Api\Groups\GroupsApi.cs" />
     <Compile Include="Api\Groups\Model\GetGroupsRequest.cs" />
+    <Compile Include="Api\Groups\Model\Group.cs" />
     <Compile Include="Api\Groups\Model\SortProperty.cs" />
     <Compile Include="Api\Messaging\MessagingApi.cs" />
     <Compile Include="Api\Messaging\Model\AbstractMessage.cs" />

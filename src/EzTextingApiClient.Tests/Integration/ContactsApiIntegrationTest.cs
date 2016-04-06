@@ -39,7 +39,7 @@ namespace EzTextingApiClient.Tests.Integration
             Console.WriteLine("updated contact: " + created);
 
             updated = Client.ContactsApi.Get(updated.Id);
-            Console.WriteLine("get updated contact: " + created);
+            Console.WriteLine("get updated contact: " + updated);
 
             var request = new GetContactsRequest
             {
