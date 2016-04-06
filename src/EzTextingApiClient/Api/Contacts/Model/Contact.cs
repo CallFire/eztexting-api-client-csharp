@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using EzTextingApiClient.Api.Common.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace EzTextingApiClient.Api.Contacts.Model
 {
@@ -15,14 +16,20 @@ namespace EzTextingApiClient.Api.Contacts.Model
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Note { get; set; }
-        public SourceType? Source { get; }
+
+        [JsonConverter(typeof(StringEnumConverter))]
+        public SourceType? Source { get; private set; }
 
         [QueryParamAsNumber]
         public bool? OptOut { get; set; }
 
         public IList<string> Groups { get; set; }
 
-//        [JsonProperty(pattern = "MM-dd-yyyy")]
-        public DateTime? CreatedAt { get; }
+        [JsonConverter(typeof(CreatedAtConvertor))]
+        public DateTime? CreatedAt { get; private set; }
+
+        public override string ToString() =>
+            $"Contact [Id={Id}, PhoneNumber={PhoneNumber}, FirstName={FirstName}, LastName={LastName}, Email={Email}, " +
+            $"Note={Note}, Source={Source}, OptOut={OptOut}, Groups={",".Join(Groups)} CreatedAt={CreatedAt}]";
     }
 }

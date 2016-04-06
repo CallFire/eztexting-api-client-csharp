@@ -204,6 +204,10 @@ namespace EzTextingApiClient
             {
                 return ((SimpleMessage) value).Message;
             }
+            else if (value is bool)
+            {
+                return value.ToString().ToLower();
+            }
             else
             {
                 return value.ToString();

@@ -39,10 +39,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AbstractApiTest.cs" />
+    <Compile Include="Api\ContactsApiTest.cs" />
     <Compile Include="Api\MessagingApiTest.cs" />
     <Compile Include="Api\ToolboxApiTest.cs" />
     <Compile Include="ClientUtilsTest.cs" />
     <Compile Include="Integration\AbstractApiIntegrationTest.cs" />
+    <Compile Include="Integration\ContactsApiIntegrationTest.cs" />
     <Compile Include="Integration\MessagingApiIntegrationTest.cs" />
     <Compile Include="Integration\ToolboxApiIntegrationTest.cs" />
     <Compile Include="MockRestClient.cs" />

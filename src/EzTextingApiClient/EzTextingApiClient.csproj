@@ -45,7 +45,11 @@
     <Compile Include="Api\Common\Model\GetRequest.cs" />
     <Compile Include="Api\Common\Model\QueryParamAsNumber.cs" />
     <Compile Include="Api\Common\Model\SortType.cs" />
+    <Compile Include="Api\Contacts\ContactsApi.cs" />
     <Compile Include="Api\Contacts\Model\Contact.cs" />
+    <Compile Include="Api\Contacts\Model\GetContactsRequest.cs" />
+    <Compile Include="Api\Contacts\Model\QueryProperty.cs" />
+    <Compile Include="Api\Contacts\Model\SortProperty.cs" />
     <Compile Include="Api\Contacts\Model\SourceType.cs" />
     <Compile Include="Api\Groups\Model\GetGroupsRequest.cs" />
     <Compile Include="Api\Groups\Model\SortProperty.cs" />
@@ -67,6 +71,7 @@
     <Compile Include="Auth\RequestParamAuth.cs" />
     <Compile Include="Brand.cs" />
     <Compile Include="CarrierNameConverter.cs" />
+    <Compile Include="CreatedAtConvertor.cs" />
     <Compile Include="DateTimeConvertor.cs" />
     <Compile Include="EzTextingClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -20,7 +20,7 @@ namespace EzTextingApiClient
             Errors = errors;
         }
 
-        public override string Message => Errors.ToPrettyString();
+        public override string Message => Errors != null ? Errors.ToPrettyString() : "";
 
         public override string ToString()
         {

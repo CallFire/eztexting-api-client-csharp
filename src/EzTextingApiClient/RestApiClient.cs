@@ -159,7 +159,7 @@ namespace EzTextingApiClient
         /// <exception cref="EzTextingApiException">         in case HTTP response code is something different from codes listed above.</exception>
         /// <exception cref="EzTextingClientException">      in case error has occurred in client.</exception>
         public EzTextingResponse<T> Get<T>(string path, EzTextingModel request,
-            IEnumerable<KeyValuePair<string, object>> queryParams) where T : new()
+            IEnumerable<KeyValuePair<string, object>> queryParams = null) where T : new()
         {
             Logger.Debug("GET request to {0} with params: {1}", path, queryParams);
             var restRequest = CreateRestRequest(path, Method.GET, request, queryParams);
@@ -261,7 +261,8 @@ namespace EzTextingApiClient
             if (statusCode < 400 && response.ErrorException == null) return;
 
             Logger.Error("request has failed: {0}", response.ErrorException);
-            var errors = _jsonDeserializer.Deserialize<EzTextingResponse<object>>(response).Errors;
+            var errors = _jsonDeserializer.Deserialize<EzTextingResponse<object>>(response).Errors ??
+                         new List<string> {response.ErrorException.Message};
             throw new EzTextingApiException(statusCode, errors);
 /*
                 TODO vmikhailov currently EZ API returns incorrect codes for almost all operations, so we just throw generic

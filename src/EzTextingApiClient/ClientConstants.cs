@@ -22,6 +22,7 @@ namespace EzTextingApiClient
 
         public const string Placeholder = "{}";
         public const string DateFormatPattern = "MM-dd-yyyy h:mm tt";
+        public const string CreatedAtFormatPattern = "MM-dd-yyyy";
 
         public const string FormEncodedContentType = "application/x-www-form-urlencoded";
         public const string JsonContentType = "application/json";
