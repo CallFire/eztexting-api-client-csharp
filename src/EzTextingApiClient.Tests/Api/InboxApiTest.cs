@@ -127,6 +127,8 @@ namespace EzTextingApiClient.Tests.Api
             var restRequest = MockRestResponse(expectedJson);
 
             var response = Client.InboxApi.CreateFolder("test folder");
+            // set name to null because serer returns only id
+            response.Name = null;
             EzTextingResponse<Folder> ezResponse = new EzTextingResponse<Folder>("Success", 201, response);
             Assert.That(Serializer.Serialize(ezResponse), Is.EqualTo(expectedJson));
 

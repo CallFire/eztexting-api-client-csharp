@@ -238,8 +238,21 @@ namespace EzTextingApiClient
             if (statusCode < 400 && response.ErrorException == null) return;
 
             Logger.Error("request has failed: {0}", response.ErrorException);
-            var errors = _jsonDeserializer.Deserialize<EzTextingResponse<object>>(response).Errors ??
-                         new List<string> {response.ErrorException.Message};
+            List<string> errors;
+            var apiErrors = _jsonDeserializer.Deserialize<EzTextingResponse<object>>(response)?.Errors as List<string>;
+            if (apiErrors != null)
+            {
+                errors = apiErrors;
+            }
+            else if (response.ErrorException != null)
+            {
+                errors = new List<string> {response.ErrorException.Message};
+            }
+            else
+            {
+                errors = new List<string> {response.StatusDescription};
+            }
+
             throw new EzTextingApiException(statusCode, errors);
 /*
                 TODO vmikhailov currently EZ API returns incorrect codes for almost all operations, so we just throw generic

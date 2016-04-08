@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Api\AbstractApiTest.cs" />
     <Compile Include="Api\ContactsApiTest.cs" />
+    <Compile Include="Api\CreditsApiTest.cs" />
     <Compile Include="Api\GroupsApiTest.cs" />
     <Compile Include="Api\InboxApiTest.cs" />
     <Compile Include="Api\MessagingApiTest.cs" />
@@ -47,6 +48,7 @@
     <Compile Include="ClientUtilsTest.cs" />
     <Compile Include="Integration\AbstractApiIntegrationTest.cs" />
     <Compile Include="Integration\ContactsApiIntegrationTest.cs" />
+    <Compile Include="Integration\CreditsApiIntegrationTest.cs" />
     <Compile Include="Integration\GroupsApiIntegrationTest.cs" />
     <Compile Include="Integration\InboxApiIntegrationTest.cs" />
     <Compile Include="Integration\MessagingApiIntegrationTest.cs" />

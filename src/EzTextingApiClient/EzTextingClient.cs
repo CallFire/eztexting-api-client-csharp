@@ -1,5 +1,6 @@
 ﻿using System;
 using EzTextingApiClient.Api.Contacts;
+using EzTextingApiClient.Api.Credits;
 using EzTextingApiClient.Api.Groups;
 using EzTextingApiClient.Api.Inbox;
 using EzTextingApiClient.Api.Messaging;
@@ -39,12 +40,14 @@ namespace EzTextingApiClient
 
         private readonly Lazy<MessagingApi> _messagingApi;
         private readonly Lazy<InboxApi> _inboxApi;
+        private readonly Lazy<CreditsApi> _creditsApi;
         private readonly Lazy<ContactsApi> _contactsApi;
         private readonly Lazy<GroupsApi> _groupsApi;
         private readonly Lazy<ToolboxApi> _toolboxApi;
 
         public MessagingApi MessagingApi => _messagingApi.Value;
         public InboxApi InboxApi => _inboxApi.Value;
+        public CreditsApi CreditsApi => _creditsApi.Value;
         public ContactsApi ContactsApi => _contactsApi.Value;
         public GroupsApi GroupsApi => _groupsApi.Value;
         public ToolboxApi ToolboxApi => _toolboxApi.Value;
@@ -59,6 +62,7 @@ namespace EzTextingApiClient
 
             _messagingApi = new Lazy<MessagingApi>(() => new MessagingApi(RestApiClient));
             _inboxApi = new Lazy<InboxApi>(() => new InboxApi(RestApiClient));
+            _creditsApi = new Lazy<CreditsApi>(() => new CreditsApi(RestApiClient));
             _contactsApi = new Lazy<ContactsApi>(() => new ContactsApi(RestApiClient));
             _groupsApi = new Lazy<GroupsApi>(() => new GroupsApi(RestApiClient));
             _toolboxApi = new Lazy<ToolboxApi>(() => new ToolboxApi(RestApiClient));

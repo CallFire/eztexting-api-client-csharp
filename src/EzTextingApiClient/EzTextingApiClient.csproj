@@ -52,6 +52,12 @@
     <Compile Include="Api\Contacts\Model\QueryProperty.cs" />
     <Compile Include="Api\Contacts\Model\SortProperty.cs" />
     <Compile Include="Api\Contacts\Model\SourceType.cs" />
+    <Compile Include="Api\Credits\CreditsApi.cs" />
+    <Compile Include="Api\Credits\Model\BuyCreditsRequest.cs" />
+    <Compile Include="Api\Credits\Model\BuyCreditsResponse.cs" />
+    <Compile Include="Api\Credits\Model\CreditBalance.cs" />
+    <Compile Include="Api\Credits\Model\CreditCard.cs" />
+    <Compile Include="Api\Credits\Model\CreditCardType.cs" />
     <Compile Include="Api\Groups\GroupsApi.cs" />
     <Compile Include="Api\Groups\Model\GetGroupsRequest.cs" />
     <Compile Include="Api\Groups\Model\Group.cs" />
@@ -110,6 +116,8 @@
     <Folder Include="Api\" />
     <Folder Include="Api\Common\" />
     <Folder Include="Api\Contacts\" />
+    <Folder Include="Api\Credits" />
+    <Folder Include="Api\Credits\Model" />
     <Folder Include="Api\Groups\" />
     <Folder Include="Api\Inbox" />
     <Folder Include="Api\Inbox\Model" />
