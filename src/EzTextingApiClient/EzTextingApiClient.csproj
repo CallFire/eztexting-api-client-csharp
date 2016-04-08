@@ -44,6 +44,7 @@
     <Compile Include="Api\Common\Model\EzTextingResponse.cs" />
     <Compile Include="Api\Common\Model\GetRequest.cs" />
     <Compile Include="Api\Common\Model\QueryParamAsNumber.cs" />
+    <Compile Include="Api\Common\Model\QueryParamIgnore.cs" />
     <Compile Include="Api\Common\Model\SortType.cs" />
     <Compile Include="Api\Contacts\ContactsApi.cs" />
     <Compile Include="Api\Contacts\Model\Contact.cs" />
@@ -55,6 +56,12 @@
     <Compile Include="Api\Groups\Model\GetGroupsRequest.cs" />
     <Compile Include="Api\Groups\Model\Group.cs" />
     <Compile Include="Api\Groups\Model\SortProperty.cs" />
+    <Compile Include="Api\Inbox\InboxApi.cs" />
+    <Compile Include="Api\Inbox\Model\Folder.cs" />
+    <Compile Include="Api\Inbox\Model\GetMessagesRequest.cs" />
+    <Compile Include="Api\Inbox\Model\InboxMessage.cs" />
+    <Compile Include="Api\Inbox\Model\MessageType.cs" />
+    <Compile Include="Api\Inbox\Model\SortProperty.cs" />
     <Compile Include="Api\Messaging\MessagingApi.cs" />
     <Compile Include="Api\Messaging\Model\AbstractMessage.cs" />
     <Compile Include="Api\Messaging\Model\DeliveryMethod.cs" />
@@ -104,6 +111,8 @@
     <Folder Include="Api\Common\" />
     <Folder Include="Api\Contacts\" />
     <Folder Include="Api\Groups\" />
+    <Folder Include="Api\Inbox" />
+    <Folder Include="Api\Inbox\Model" />
     <Folder Include="Api\Messaging\" />
     <Folder Include="Api\Toolbox" />
     <Folder Include="Api\Toolbox\Model" />

@@ -125,25 +125,12 @@ namespace EzTextingApiClient
         /// </summary>
         /// <typeparam name="T">The type of object to create and populate with the returned data.</typeparam>
         /// <param name="path">relative API request path</param>
-        /// <returns>mapped object</returns>
-        /// <exception cref="EzTextingApiException">         in case HTTP response code is something different from codes listed above.</exception>
-        /// <exception cref="EzTextingClientException">      in case error has occurred in client.</exception>
-        public EzTextingResponse<T> Get<T>(string path) where T : new()
-        {
-            return Get<T>(path, ClientUtils.EmptyMap);
-        }
-
-        /// <summary>
-        /// Performs GET request to specified path
-        /// </summary>
-        /// <typeparam name="T">The type of object to create and populate with the returned data.</typeparam>
-        /// <param name="path">relative API request path</param>
         /// <param name="queryParams">query parameters</param>
         /// <returns>mapped object</returns>
         /// <exception cref="EzTextingApiException">         in case HTTP response code is something different from codes listed above.</exception>
         /// <exception cref="EzTextingClientException">      in case error has occurred in client.</exception>
-        public EzTextingResponse<T> Get<T>(string path, IEnumerable<KeyValuePair<string, object>> queryParams)
-            where T : new()
+        public EzTextingResponse<T> Get<T>(string path,
+            IEnumerable<KeyValuePair<string, object>> queryParams) where T : new()
         {
             return Get<T>(path, null, queryParams);
         }
@@ -158,7 +145,7 @@ namespace EzTextingApiClient
         /// <returns>mapped object</returns>
         /// <exception cref="EzTextingApiException">         in case HTTP response code is something different from codes listed above.</exception>
         /// <exception cref="EzTextingClientException">      in case error has occurred in client.</exception>
-        public EzTextingResponse<T> Get<T>(string path, EzTextingModel request,
+        public EzTextingResponse<T> Get<T>(string path, EzTextingModel request = null,
             IEnumerable<KeyValuePair<string, object>> queryParams = null) where T : new()
         {
             Logger.Debug("GET request to {0} with params: {1}", path, queryParams);
@@ -171,13 +158,14 @@ namespace EzTextingApiClient
         /// </summary>
         /// <typeparam name="T">The type of object to create and populate with the returned data.</typeparam>
         /// <param name="path">relative API request path</param>
-        /// <param name="payload">optional object to send</param>
+        /// <param name="queryParams">query parameters</param>
         /// <returns>mapped object</returns>
         /// <exception cref="EzTextingApiException">         in case HTTP response code is something different from codes listed above.</exception>
         /// <exception cref="EzTextingClientException">      in case error has occurred in client.</exception>
-        public EzTextingResponse<T> Post<T>(string path, EzTextingModel payload = null) where T : new()
+        public EzTextingResponse<T> Post<T>(string path,
+            IEnumerable<KeyValuePair<string, object>> queryParams) where T : new()
         {
-            return Post<T>(path, payload, ClientUtils.EmptyMap);
+            return Post<T>(path, null, queryParams);
         }
 
         /// <summary>
@@ -190,23 +178,12 @@ namespace EzTextingApiClient
         /// <returns>mapped object</returns>
         /// <exception cref="EzTextingApiException">         in case HTTP response code is something different from codes listed above.</exception>
         /// <exception cref="EzTextingClientException">      in case error has occurred in client.</exception>
-        public EzTextingResponse<T> Post<T>(string path, EzTextingModel payload,
-            IEnumerable<KeyValuePair<string, object>> queryParams) where T : new()
+        public EzTextingResponse<T> Post<T>(string path, EzTextingModel payload = null,
+            IEnumerable<KeyValuePair<string, object>> queryParams = null) where T : new()
         {
             Logger.Debug("POST request to {0} params: {1} entity: \n{2}", path, queryParams, payload);
             var restRequest = CreateRestRequest(path, Method.POST, payload, queryParams);
             return DoRequest<EzTextingResponse<T>>(restRequest);
-        }
-
-        /// <summary>
-        /// Performs DELETE request to specified path
-        /// </summary>
-        /// <param name="path">relative API request path</param>
-        /// <exception cref="EzTextingApiException">         in case HTTP response code is something different from codes listed above.</exception>
-        /// <exception cref="EzTextingClientException">      in case error has occurred in client.</exception>
-        public void Delete(string path)
-        {
-            Delete(path, ClientUtils.EmptyMap);
         }
 
         /// <summary>
@@ -216,7 +193,7 @@ namespace EzTextingApiClient
         /// <param name="queryParams">query parameters</param>
         /// <exception cref="EzTextingApiException">         in case HTTP response code is something different from codes listed above.</exception>
         /// <exception cref="EzTextingClientException">      in case error has occurred in client.</exception>
-        public void Delete(string path, IEnumerable<KeyValuePair<string, object>> queryParams)
+        public void Delete(string path, IEnumerable<KeyValuePair<string, object>> queryParams = null)
         {
             Logger.Debug("DELETE request to {0} with params: {1}", path, queryParams);
             var restRequest = CreateRestRequest(path, Method.DELETE, null, queryParams);

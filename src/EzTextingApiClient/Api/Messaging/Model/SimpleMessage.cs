@@ -11,11 +11,9 @@ namespace EzTextingApiClient.Api.Messaging.Model
         public string Message { get; set; }
 
         [JsonProperty("MessageTypeID")]
-        public DeliveryMethod DeliveryMethod { get; set; }
+        public DeliveryMethod? DeliveryMethod { get; set; }
 
-        public override string ToString()
-        {
-            return $"SimpleMessage [Subject={Subject}, Message={Message}, DeliveryMethod={DeliveryMethod}]";
-        }
+        public override string ToString() =>
+            $"SimpleMessage [Subject={Subject}, Message={Message}, DeliveryMethod={DeliveryMethod}]";
     }
 }

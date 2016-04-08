@@ -129,7 +129,8 @@ namespace EzTextingApiClient
             foreach (var pi in request.GetType().GetProperties())
             {
                 var attr = GetPropertyAttributes(pi);
-                if (attr.ContainsKey(typeof(JsonIgnoreAttribute).Name))
+                if (attr.ContainsKey(typeof(JsonIgnoreAttribute).Name) ||
+                    attr.ContainsKey(typeof(QueryParamIgnore).Name))
                 {
                     continue;
                 }

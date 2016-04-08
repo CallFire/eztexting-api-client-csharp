@@ -53,7 +53,7 @@ namespace EzTextingApiClient.Api.Groups
         /// <exception cref="EzTextingClientException">in case error has occurred in client.</exception>
         public Group Get(long id)
         {
-            Validate.NotNull(id, "id cannot be blank");
+            Validate.NotNull(id, "id cannot be null");
             return _client.Get<Group>(GroupsItemPath.ReplaceFirst(ClientConstants.Placeholder, id.ToString())).Entry;
         }
 
@@ -77,7 +77,7 @@ namespace EzTextingApiClient.Api.Groups
         /// <exception cref="EzTextingClientException">in case error has occurred in client.</exception>
         public void Delete(long id)
         {
-            Validate.NotNull(id, "id cannot be blank");
+            Validate.NotNull(id, "id cannot be null");
             _client.Delete(GroupsItemPath.ReplaceFirst(ClientConstants.Placeholder, id.ToString()));
         }
     }
