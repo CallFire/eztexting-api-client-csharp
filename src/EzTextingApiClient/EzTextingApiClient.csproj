@@ -68,6 +68,9 @@
     <Compile Include="Api\Inbox\Model\InboxMessage.cs" />
     <Compile Include="Api\Inbox\Model\MessageType.cs" />
     <Compile Include="Api\Inbox\Model\SortProperty.cs" />
+    <Compile Include="Api\Keywords\KeywordsApi.cs" />
+    <Compile Include="Api\Keywords\Model\CheckAvailabilityResponse.cs" />
+    <Compile Include="Api\Keywords\Model\Keyword.cs" />
     <Compile Include="Api\Media\MediaLibraryApi.cs" />
     <Compile Include="Api\Media\Model\MediaFile.cs" />
     <Compile Include="Api\Messaging\MessagingApi.cs" />
@@ -123,6 +126,8 @@
     <Folder Include="Api\Groups\" />
     <Folder Include="Api\Inbox" />
     <Folder Include="Api\Inbox\Model" />
+    <Folder Include="Api\Keywords" />
+    <Folder Include="Api\Keywords\Model" />
     <Folder Include="Api\Media" />
     <Folder Include="Api\Media\Model" />
     <Folder Include="Api\Messaging\" />

@@ -43,6 +43,7 @@
     <Compile Include="Api\CreditsApiTest.cs" />
     <Compile Include="Api\GroupsApiTest.cs" />
     <Compile Include="Api\InboxApiTest.cs" />
+    <Compile Include="Api\KeywordsApiTest.cs" />
     <Compile Include="Api\MediaLibraryApiTest.cs" />
     <Compile Include="Api\MessagingApiTest.cs" />
     <Compile Include="Api\ToolboxApiTest.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Integration\CreditsApiIntegrationTest.cs" />
     <Compile Include="Integration\GroupsApiIntegrationTest.cs" />
     <Compile Include="Integration\InboxApiIntegrationTest.cs" />
+    <Compile Include="Integration\KeywordsApiIntegrationTest.cs" />
     <Compile Include="Integration\MediaLibraryApiIntegrationTest.cs" />
     <Compile Include="Integration\MessagingApiIntegrationTest.cs" />
     <Compile Include="Integration\ToolboxApiIntegrationTest.cs" />

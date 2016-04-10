@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace EzTextingApiClient.Tests.Integration
 {
-    [TestFixture]
+    [TestFixture, Ignore("temporary disabled")]
     public class MediaLibraryApiIntegrationTest : AbstractIntegrationTest
     {
         [Test]
