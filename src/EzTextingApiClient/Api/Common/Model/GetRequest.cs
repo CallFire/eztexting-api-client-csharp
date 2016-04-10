@@ -2,7 +2,7 @@
 
 namespace EzTextingApiClient.Api.Common.Model
 {
-    public abstract class GetRequest : EzTextingModel
+    public class GetRequest : EzTextingModel
     {
         [JsonProperty("sortDir")]
         public SortType SortType { get; set; }
@@ -12,5 +12,8 @@ namespace EzTextingApiClient.Api.Common.Model
 
         [JsonProperty("page")]
         public int Page { get; set; }
+
+        public override string ToString() =>
+            $"GetRequest [SortType={SortType}, ItemsPerPage={ItemsPerPage}, Page={Page}]";
     }
 }

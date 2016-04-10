@@ -3,6 +3,7 @@ using EzTextingApiClient.Api.Contacts;
 using EzTextingApiClient.Api.Credits;
 using EzTextingApiClient.Api.Groups;
 using EzTextingApiClient.Api.Inbox;
+using EzTextingApiClient.Api.Media;
 using EzTextingApiClient.Api.Messaging;
 using EzTextingApiClient.Api.Toolbox;
 using EzTextingApiClient.Auth;
@@ -43,6 +44,7 @@ namespace EzTextingApiClient
         private readonly Lazy<CreditsApi> _creditsApi;
         private readonly Lazy<ContactsApi> _contactsApi;
         private readonly Lazy<GroupsApi> _groupsApi;
+        private readonly Lazy<MediaLibraryApi> _mediaLibraryApi;
         private readonly Lazy<ToolboxApi> _toolboxApi;
 
         public MessagingApi MessagingApi => _messagingApi.Value;
@@ -50,6 +52,7 @@ namespace EzTextingApiClient
         public CreditsApi CreditsApi => _creditsApi.Value;
         public ContactsApi ContactsApi => _contactsApi.Value;
         public GroupsApi GroupsApi => _groupsApi.Value;
+        public MediaLibraryApi MediaLibraryApi => _mediaLibraryApi.Value;
         public ToolboxApi ToolboxApi => _toolboxApi.Value;
 
         public EzTextingClient(string username, string password) : this(Brand.Ez, username, password)
@@ -65,6 +68,7 @@ namespace EzTextingApiClient
             _creditsApi = new Lazy<CreditsApi>(() => new CreditsApi(RestApiClient));
             _contactsApi = new Lazy<ContactsApi>(() => new ContactsApi(RestApiClient));
             _groupsApi = new Lazy<GroupsApi>(() => new GroupsApi(RestApiClient));
+            _mediaLibraryApi = new Lazy<MediaLibraryApi>(() => new MediaLibraryApi(RestApiClient));
             _toolboxApi = new Lazy<ToolboxApi>(() => new ToolboxApi(RestApiClient));
         }
     }
