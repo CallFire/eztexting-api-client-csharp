@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6BEBD79A-3DB2-4AD3-8D49-ABED451BFD73}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>EzTextingApiClient.Tests</RootNamespace>
+    <AssemblyName>EzTextingApiClient.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ReleaseVersion>1.0.0</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="RestSharp">
+      <HintPath>..\..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\AbstractApiTest.cs" />
+    <Compile Include="Api\ContactsApiTest.cs" />
+    <Compile Include="Api\CreditsApiTest.cs" />
+    <Compile Include="Api\GroupsApiTest.cs" />
+    <Compile Include="Api\InboxApiTest.cs" />
+    <Compile Include="Api\KeywordsApiTest.cs" />
+    <Compile Include="Api\MediaLibraryApiTest.cs" />
+    <Compile Include="Api\MessagingApiTest.cs" />
+    <Compile Include="Api\ToolboxApiTest.cs" />
+    <Compile Include="ClientUtilsTest.cs" />
+    <Compile Include="Integration\AbstractApiIntegrationTest.cs" />
+    <Compile Include="Integration\ContactsApiIntegrationTest.cs" />
+    <Compile Include="Integration\CreditsApiIntegrationTest.cs" />
+    <Compile Include="Integration\GroupsApiIntegrationTest.cs" />
+    <Compile Include="Integration\InboxApiIntegrationTest.cs" />
+    <Compile Include="Integration\KeywordsApiIntegrationTest.cs" />
+    <Compile Include="Integration\MediaLibraryApiIntegrationTest.cs" />
+    <Compile Include="Integration\MessagingApiIntegrationTest.cs" />
+    <Compile Include="Integration\ToolboxApiIntegrationTest.cs" />
+    <Compile Include="MockRestClient.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="JsonMocks\common\errorResponse.json" />
+    <None Include="JsonMocks\contacts\contactsApi\create.json" />
+    <None Include="JsonMocks\contacts\contactsApi\get.json" />
+    <None Include="JsonMocks\contacts\contactsApi\getAllContacts.json" />
+    <None Include="JsonMocks\contacts\contactsApi\update.json" />
+    <None Include="JsonMocks\credits\creditsApi\buyCredits.json" />
+    <None Include="JsonMocks\credits\creditsApi\checkBalance.json" />
+    <None Include="JsonMocks\groups\groupsApi\create.json" />
+    <None Include="JsonMocks\groups\groupsApi\get.json" />
+    <None Include="JsonMocks\groups\groupsApi\getAllGroups.json" />
+    <None Include="JsonMocks\groups\groupsApi\update.json" />
+    <None Include="JsonMocks\inbox\inboxApi\createFolder.json" />
+    <None Include="JsonMocks\inbox\inboxApi\getFolder.json" />
+    <None Include="JsonMocks\inbox\inboxApi\getFolders.json" />
+    <None Include="JsonMocks\inbox\inboxApi\getMessage.json" />
+    <None Include="JsonMocks\inbox\inboxApi\getMessages.json" />
+    <None Include="JsonMocks\keywords\keywordsApi\checkAvailability.json" />
+    <None Include="JsonMocks\keywords\keywordsApi\rent.json" />
+    <None Include="JsonMocks\keywords\keywordsApi\setup.json" />
+    <None Include="JsonMocks\media\mediaLibraryApi\get.json" />
+    <None Include="JsonMocks\media\mediaLibraryApi\getAllFiles.json" />
+    <None Include="JsonMocks\messaging\messagingApi\getDetailedReport.json" />
+    <None Include="JsonMocks\messaging\messagingApi\getReport.json" />
+    <None Include="JsonMocks\messaging\messagingApi\sendMms.json" />
+    <None Include="JsonMocks\messaging\messagingApi\sendSms.json" />
+    <None Include="JsonMocks\messaging\messagingApi\sendVoice.json" />
+    <None Include="JsonMocks\toolbox\toolboxApi\carrierLookup.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EzTextingApiClient\EzTextingApiClient.csproj">
+      <Project>{668B6685-F139-454A-9306-BE79589DFCED}</Project>
+      <Name>EzTextingApiClient</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Api\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EzTextingApiClient.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

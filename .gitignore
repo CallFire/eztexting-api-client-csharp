@@ -1,4 +1,4 @@
-#Autosave files
+﻿#Autosave files
 *~
 
 #build
@@ -8,6 +8,10 @@ packages/
 TestResults/
 
 # globs
+.idea/
+.nuget/
+eztexting-api-client-csharp.sln.iml
+
 Makefile.in
 *.DS_Store
 *.sln.cache

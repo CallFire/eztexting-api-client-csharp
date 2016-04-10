@@ -1,0 +1,20 @@
+{
+  "Response": {
+    "Status": "Success",
+    "Code": 200,
+    "Entries": [
+      {
+        "ID": 127012,
+        "Name": "Honey lovers",
+        "Note": "",
+        "ContactCount": 5
+      },
+      {
+        "ID": 162467,
+        "Name": "Tubby Bears",
+        "Note": "A bear, however hard he tries, grows tubby without exercise",
+        "ContactCount": 5
+      }
+    ]
+  }
+}

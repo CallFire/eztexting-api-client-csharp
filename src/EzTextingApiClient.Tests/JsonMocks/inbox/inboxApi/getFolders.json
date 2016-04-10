@@ -1,0 +1,16 @@
+{
+  "Response": {
+    "Status": "Success",
+    "Code": 200,
+    "Entries": [
+      {
+        "ID": 1,
+        "Name": "Customers"
+      },
+      {
+        "ID": 2,
+        "Name": "Fans"
+      }
+    ]
+  }
+}

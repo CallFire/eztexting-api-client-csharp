@@ -1,0 +1,11 @@
+{
+  "Response": {
+    "Status": "Bad request",
+    "Code": 400,
+    "Errors": [
+      "PhoneNumbers: '(123)45-67' contains characters which are not digits",
+      "Subject: Your subject must be under 13 characters",
+      "Message: Your message contains characters that are not supported"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "Response": {
+    "Status": "Success",
+    "Code": 200,
+    "Entry": {
+      "ID": 26,
+      "Name": "1356508b.gif",
+      "Path": "https://eztxting.s3.amazonaws.com/243678/files/1356508b_1407243956.gif"
+    }
+  }
+}
