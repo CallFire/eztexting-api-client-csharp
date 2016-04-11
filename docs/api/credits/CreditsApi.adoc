@@ -1,38 +1,44 @@
-= Credits API
+﻿= Credits API
 
 === Check credit balance
 Example how to check credit balances on your account.
-[source,java]
-    EzTextingClient client = new EzTextingClient("api_login", "api_password");
-    CreditBalance balance = client.creditsApi().checkBalance();
-    System.out.println("balance: " + balance);
+[source,csharp]
+    EzTextingClient client = new EzTextingClient("login", "password");
+    CreditBalance balance = client.CreditsApi.CheckBalance();
+    Console.WriteLine("balance: " + balance);
 
 === Buy credits
 Buy more credits for your account. You may purchase credits using a credit card you have stored in your
  Ez Texting account, or you may pass credit card details when you call the API. Example how to use stored credit card:
-[source,java]
-    EzTextingClient client = new EzTextingClient("api_login", "api_password");
-    BuyCreditsRequest request = BuyCreditsRequest.withStoredCard("1111").credits(200L).build();
-    BuyCreditsResponse response = client.creditsApi().buyCredits(request);
-    System.out.println("buy credits with stored cc: " + response);
+[source,csharp]
+    EzTextingClient client = new EzTextingClient("login", "password");
+    var request = new BuyCreditsRequest
+    {
+        Credits = 200,
+        CouponCode = "ABX32WE",
+        StoredCard = "4533"
+    };
+    BuyCreditsResponse response = client.CreditsApi.BuyCredits(request);
+    Console.WriteLine("buy credits with stored cc: " + response);
 
 as another option you can provide credit card details in request:
-[source,java]
-    EzTextingClient client = new EzTextingClient("api_login", "api_password");
-    BuyCreditsRequest request = BuyCreditsRequest.withNewCard()
-        .credits(200L)
-        .firstName("John")
-        .lastName("Doe")
-        .state("LA")
-        .city("Los Angeles")
-        .street("4th Street")
-        .country("United States")
-        .zip("12345")
-        .number("4111111111111111")
-        .type(CreditCardType.VISA)
-        .month("12")
-        .year("2020")
-        .securityCode("123")
-        .build();
-    BuyCreditsResponse response = client.creditsApi().buyCredits(request);
-    System.out.println("buy credits with new cc: " + response);
+[source,csharp]
+    EzTextingClient client = new EzTextingClient("login", "password");
+    var request = new BuyCreditsRequest
+    {
+        CouponCode = "ABX32WE",
+        FirstName = "John",
+        LastName = "Doe",
+        State = "LA",
+        SecurityCode = "123",
+        ExpirationMonth = "11",
+        ExpirationYear = "2020",
+        Number = "411111111111",
+        City = "LA",
+        Country = "US",
+        Street = "1 Avenue",
+        Zip = "31331",
+        Type = CreditCardType.MasterCard
+    };
+    BuyCreditsResponse response = client.CreditsApi.BuyCredits(request);
+    Console.WriteLine("buy credits with new cc: " + response);

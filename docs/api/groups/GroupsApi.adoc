@@ -2,48 +2,54 @@
 
 === Create
 Example how to create a new group that will be stored in your Ez Texting account
-[source,java]
-    EzTextingClient client = new EzTextingClient("api_login", "api_password");
-    Group group = new Group();
-    group.setName("Friends");
-    group.setNote("my friends numbers");
-    Group stored = client.groupsApi().create(group);
-    System.out.println(stored);
+[source,csharp]
+    EzTextingClient client = new EzTextingClient("login", "password");
+    var group = new Group
+    {
+        Name = "Friends",
+        Note = "my friends numbers"
+    };
+    Group stored = client.GroupsApi.Create(group);
+    Console.WriteLine(stored);
 
 === Update
 Example how to update a group stored in your Ez Texting account
-[source,java]
-    EzTextingClient client = new EzTextingClient("api_login", "api_password");
-    Group group = new Group();
-    group.setId(202020L);
-    group.setName("New Friends");
-    Group updated = client.groupsApi().update(created);
-    System.out.println(updated);
+[source,csharp]
+    EzTextingClient client = new EzTextingClient("login", "password");
+    var group = new Group
+    {
+        Id = 202020,
+        Note = "my family numbers"
+    };
+    Group updated = client.GroupsApi.Update(group);
+    Console.WriteLine(updated);
 
 === Get one group
 Get a single group stored in your Ez Texting account.
-[source,java]
-    EzTextingClient client = new EzTextingClient("api_login", "api_password");
-    Group group = client.groupsApi().get(343434L);
-    System.out.println(group);
+[source,csharp]
+    EzTextingClient client = new EzTextingClient("login", "password");
+    Group group = client.GroupsApi.Get(343434);
+    Console.WriteLine(group);
 
 === Get multiple groups
 Get a list of groups stored in your Ez Texting account.
-[source,java]
-    EzTextingClient client = new EzTextingClient("api_login", "api_password");
-    GetGroupsRequest request = GetGroupsRequest.create()
+[source,csharp]
+    EzTextingClient client = new EzTextingClient("login", "password");
+    var request = new GetGroupsRequest
+    {
+        SortBy = SortProperty.Name,
         // sort asc/desc
-        .sortType(SortType.ASC)
+        SortType = SortType.Desc,
         // number of results to retrieve. By default, first 10 groups sorted in alphabetical order are retrieved.
-        .itemsPerPage(30)
+        ItemsPerPage = 10,
         // page of results to retrieve
-        .page(5)
-        .build();
-    List<Group> groups = client.groupsApi().get(request);
-    System.out.println("multiple groups: " + groups);
+        Page = 7
+    };
+    List<Group> groups = client.GroupsApi.Get(request);
+    Console.WriteLine("multiple groups: " + groups);
 
 === Delete
 Delete a group that is stored in your Ez Texting account
-[source,java]
-    EzTextingClient client = new EzTextingClient("api_login", "api_password");
-    client.groupsApi().delete(354421L);
+[source,csharp]
+    EzTextingClient client = new EzTextingClient("login", "password");
+    client.GroupsApi.Delete(354421);

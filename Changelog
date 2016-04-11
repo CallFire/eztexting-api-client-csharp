@@ -1,9 +1,5 @@
 EzTexting API client Changelog
 =============================
 
-Version 1.1.0 - Mar 3 2016
-    - added support for different brands: ClubTexting, GroupTexting, TellMyCell
-    - code & javadocs fixes according to API response codes
-
-Version 1.0.0 - Dec 9 2015
+Version 1.0.0 - Apr 15 2016
     - first release

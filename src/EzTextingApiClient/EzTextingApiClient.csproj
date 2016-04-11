@@ -121,17 +121,12 @@
     <Folder Include="Api\" />
     <Folder Include="Api\Common\" />
     <Folder Include="Api\Contacts\" />
-    <Folder Include="Api\Credits" />
-    <Folder Include="Api\Credits\Model" />
     <Folder Include="Api\Groups\" />
-    <Folder Include="Api\Inbox" />
-    <Folder Include="Api\Inbox\Model" />
-    <Folder Include="Api\Keywords" />
-    <Folder Include="Api\Keywords\Model" />
-    <Folder Include="Api\Media" />
-    <Folder Include="Api\Media\Model" />
     <Folder Include="Api\Messaging\" />
-    <Folder Include="Api\Toolbox" />
-    <Folder Include="Api\Toolbox\Model" />
+    <Folder Include="Api\Credits\" />
+    <Folder Include="Api\Inbox\" />
+    <Folder Include="Api\Keywords\" />
+    <Folder Include="Api\Media\" />
+    <Folder Include="Api\Toolbox\" />
   </ItemGroup>
 </Project>

@@ -1,10 +1,14 @@
-= EzTexting API REST client
+﻿= EzTexting API REST client
 
-Java client for EzTexting platform REST API. See link:docs/GettingStarted.adoc[Getting Started]
+C# client for EzTexting platform API. See link:docs/GettingStarted.adoc[Getting Started]
  page for setup instructions.
 
 .*Requirements:*
-* Java 7+
+* .NET 4.5+
+
+.*Dependencies:*
+* Newtonsoft.Json >= 8.0.3
+* RestSharp >= 105.2.3
 
 .*Table of contents*
 * link:docs/GettingStarted.adoc[Getting Started]
