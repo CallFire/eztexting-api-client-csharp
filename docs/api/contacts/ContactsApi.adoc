@@ -1,61 +1,67 @@
-= Contacts API
+﻿= Contacts API
 
 === Create
 Example how to create a new contact that will be stored in your Ez Texting contact list
-[source,java]
-    EzTextingClient client = new EzTextingClient("api_login", "api_password");
-    Contact contact = new Contact();
-    contact.setFirstName("Piglet");
-    contact.setLastName("Notail");
-    contact.setPhoneNumber("2123456786");
-    contact.setEmail("piglet@small-animals-alliance.org");
-    contact.setNote("It is hard to be brave, when you are only a Very Small Animal.");
-    contact.setGroups(Arrays.asList("Friends", "Neighbors"));
-    Contact stored = client.contactsApi().create(contact);
-    System.out.println(stored);
+[source,csharp]
+    EzTextingClient client = new EzTextingClient("login", "password");
+    var contact = new Contact
+    {
+        FirstName = "Piglet",
+        LastName = "Notail",
+        PhoneNumber = "2123456785",
+        Email = "piglet@small-animals-alliance.org",
+        Note = "It is hard to be brave, when you are only a Very Small Animal.",
+        Groups = new List<string>() {"Friends", "Neighbors"}
+    };
+    Contact stored = client.ContactsApi.Create(contact);
+    Console.WriteLine(stored);
 
 === Update
 Example how to update a contact stored in your Ez Texting contact list
-[source,java]
-    EzTextingClient client = new EzTextingClient("api_login", "api_password");
-    Contact contact = new Contact();
-    contact.setId("4f0b5720734fada368000000");
-    contact.setPhoneNumber("2123456787");
-    Contact updated = client.contactsApi().update(contact);
-    System.out.println(updated);
+[source,csharp]
+    EzTextingClient client = new EzTextingClient("login", "password");
+    var contact = new Contact
+    {
+        Id = "4f0b5720734fada368000000",
+        PhoneNumber = "2123450000",
+    };
+    Contact updated = client.ContactsApi.Update(contact);
+    Console.WriteLine(updated);
 
 === Get one contact
 Get a single contact stored in your Ez Texting contact list.
-[source,java]
-    EzTextingClient client = new EzTextingClient("api_login", "api_password");
-    Contact contact = client.contactsApi().get("4f0b5720734fada368000000");
-    System.out.println(contact);
+[source,csharp]
+    EzTextingClient client = new EzTextingClient("login", "password");
+    Contact contact = client.ContactsApi.Get("4f0b5720734fada368000000");
+    Console.WriteLine(contact);
 
 === Get multiple contacts
 Get a list of contacts stored in your Ez Texting contact list.
-[source,java]
-    EzTextingClient client = new EzTextingClient("api_login", "api_password");
-    GetContactsRequest request = GetContactsRequest.create()
-        // sorting asc, desc
-        .sortType(SortType.ASC)
-        // number of results to retrieve. By default, 10 most recently added contacts are retrieved.
-        .itemsPerPage(2)
-        // page of results to retrieve
-        .page(0)
+[source,csharp]
+    EzTextingClient client = new EzTextingClient("login", "password");
+    var request = new GetContactsRequest
+    {
         // search contacts by first name / last name / phone number
-        .query(QueryProperty.FIRST_NAME)
+        Query = QueryProperty.FirstName,
         // source of contacts, available values: 'Unknown', 'Manually Added', 'Upload', 'Web Widget', 'API', 'Keyword'
-        .source(SourceType.MANUAL)
+        Source = SourceType.Manual,
+        OptOut = true,
         // name of the group the contacts belong to
-        .group("Friends")
+        Group = "My Friends",
         // property to sort by. Available values: PhoneNumber, FirstName, LastName, CreatedAt
-        .sortBy(SortProperty.CREATED_AT)
-        .build();
-    List<Contact> contacts = client.contactsApi().get(request);
-    System.out.println("multiple contacts: " + contacts);
+        SortBy = SortProperty.CreatedAt,
+        // sorting asc, desc
+        SortType = SortType.Desc,
+        // number of results to retrieve. By default, 10 most recently added contacts are retrieved.
+        ItemsPerPage = 10,
+        // page of results to retrieve
+        Page = 7
+    };
+    IList<Contact> contacts = client.ContactsApi.Get(request);
+    Console.WriteLine("multiple contacts: " + contacts);
 
 === Delete
 Delete a contact stored in your Ez Texting contact list
-[source,java]
-    EzTextingClient client = new EzTextingClient("api_login", "api_password");
-    client.contactsApi().delete("4f0b5720734fada368000000");
+[source,csharp]
+    EzTextingClient client = new EzTextingClient("login", "password");
+    client.ContactsApi.Delete("4f0b5720734fada368000000");

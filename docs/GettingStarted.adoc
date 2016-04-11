@@ -1,77 +1,68 @@
-= Getting started
+﻿= Getting started
 
 == Installation
 
-Before start you should add dependency to your Java-based project. For Gradle build system add:
-[source,groovy]
-repositories {
-    jcenter()
-}
-dependencies {
-    compile 'com.eztexting:eztexting-api-client:1.1.0'
-}
+To install EzTexting API client, run the following command in the Package Manager Console
+[source]
+PM> Install-Package EzTextingApiClient
 
-for Maven build add following lines to your pom xml:
-[source,xml]
-<!-- callfire maven repo -->
-<repositories>
-    <repository>
-        <id>callfire-com</id>
-        <name>callfire-com</name>
-        <url>http://dl.bintray.com/callfire-com/maven</url>
-    </repository>
-</repositories>
-<!-- dependency -->
-<dependencies>
-    <dependency>
-        <groupId>com.eztexting</groupId>
-        <artifactId>eztexting-api-client</artifactId>
-        <version>1.1.0</version>
-    </dependency>
-</dependencies>
+or using nuget console tool:
+[source]
+$ nuget install EzTextingApiClient
 
-After these steps *eztexting-api-client* should appear in your project dependencies along with other transitive ones.
+it will install the latest public version, other releases you can find at link:https://github.com/CallFire/eztexting-api-client-csharp/releases[releases page].
+After these steps *EzTextingApiClient* should appear in your project dependencies along with other transitive ones.
+
+* Note for Visual Studio installation: to be able to use api client please manually copy EzTextingApiClient.dll.config from your
+solutionFolder\packages\EzTextingApiClient.?.?.? folder to target dir.
+You can use post-build event for that (https://msdn.microsoft.com/en-us/library/ke5z92ks.aspx).
+Command example for post-build event:
+[source]
+xcopy "$(SolutionDir)packages\EzTextingApiClient.?.?.?\lib\EzTextingApiClient.dll.config" "$(TargetDir)" /i /R /Y
 
 In case you want to build it yourself:
 [source]
-    $ git clone https://github.com/CallFire/eztexting-api-client-java.git
-    $ cd eztexting-api-client-java
-    $ gradlew build clientFatJar
+    $ git clone https://github.com/CallFire/eztexting-api-client-csharp.git
+    $ cd eztexting-api-client-csharp
+    // build on windows platform
+    $ msbuild Build.proj
+    // build on unix (mono) platforms
+    $ xbuild Build.proj
 
-it will create 4 jars in *build/libs* directory:
+it will produce zip & Nuget packages in *build/pkg* directory:
 [source]
-    eztexting-api-client-X.Y.Z.jar
-    eztexting-api-client-X.Y.Z-all.jar - client jar with all dependencies inside
-    eztexting-api-client-X.Y.Z-javadoc.jar
-    eztexting-api-client-X.Y.Z-sources.jar
+    EzTextingApiClient.dll - client assembly
+    EzTextingApiClient.dll.config - configuration file
+    EzTextingApiClient.xml - XML documentation
 
+then you can install Nuget package locally or unpack zip package into your project's lib directory.
 
 == Overview
 To create client instance just provide your account's login and password. Client uses HTTPS connection. By default it
 connects to EzTexting site, but you can specify any other related brand: ClubTexting, GroupTexting, TellMyCell, etc.
 
 Example how to get your account's credit balance:
-[source,java]
-public class TestEzTextingApi {
-    public static void main(String[] args) {
-        EzTextingClient client = new EzTextingClient("api_login", "api_password");
-        CreditBalance balance = client.creditsApi().checkBalance();
-        System.out.println("balance: " + balance);
+[source,csharp]
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
+            EzTextingClient client = new EzTextingClient("user", "pass");
+            Console.WriteLine("account balance: " + client.CreditsApi.CheckBalance());
+        }
     }
-}
 
-.*List of API classes:*
-[source,java]
-    EzTextingClient client = new EzTextingClient("api_login", "api_password");
-    client.contactsApi(); - add/get/update/delete contacts
-    client.creditsApi(); - check balance, buy credits
-    client.groupsApi(); - managing contact groups
-    client.inboxApi(); - managing your inbox messages and folders
-    client.keywordsApi(); - check availability, rent a keyword
-    client.mediaLibraryApi(); - managing Media Library files
-    client.messagingApi(); - send SMS/MMS/Voice broadcast messages
-    client.toolboxApi(); - different helpful APIs, currently it only has a Carrier Lookup operation.
-
+.*List of API groups:*
+[source,csharp]
+    EzTextingClient client = new EzTextingClient("login", "password");
+    client.ContactsApi; - add/get/update/delete contacts
+    client.CreditsApi; - check balance, buy credits
+    client.GroupsApi; - managing contact groups
+    client.InboxApi; - managing your inbox messages and folders
+    client.KeywordsApi; - check availability, rent a keyword
+    client.MediaLibraryApi; - managing Media Library files
+    client.MessagingApi; - send SMS/MMS/Voice broadcast messages
+    client.ToolboxApi; - different helpful APIs, currently it only has a Carrier Lookup operation.
 
 == Error handling
 The EzTexting Developers API uses standard HTTP response codes for responses. These HTTP codes indicate whether
@@ -86,7 +77,7 @@ Codes in the 500s range are error responses from the EzTexting system. If an err
  execution of a resource that was not due to user input, a 500 response will be returned with a corresponding
  JSON error body. In that body will contain a message detailing what went wrong.
 
-.All API methods throw following exceptions (all are RuntimeException):
+.All API methods throw following exceptions:
  * *EzTextingClientException* - in case error has occurred in client
  * *EzTextingApiException* - in case API cannot be queried for some reason and server returned error
 
@@ -94,33 +85,40 @@ Codes in the 500s range are error responses from the EzTexting system. If an err
 
 ==== NOTE. Currently some APIs return incorrect response codes, e.g. 403 instead of 400 or 404, this leads to wrong exception. We are working on API fixes.
 
-== Debug & logging
-In case you want to see requests/responses which client sends/receives from EzTexting platform you should set *DEBUG*
-level for *com.eztexting* package, then you'll see something like that in your logs:
-[source]
-2015/11/21 19:02:47:355 EEST [DEBUG] RestApiClient - GET request to https://app.eztexting.com/incoming-messages/123?format=json with params: User=winnie&Password=the-pooh
-2015/11/21 19:02:48:722 EEST [DEBUG] RestApiClient - received entity
-{
-	"Response":{
-		"Status":"Success",
-		"Code":200,
-		"Entry": {
-			"TYPE":"SMS",
-			"ID":123,
-			"PhoneNumber":"3312943691",
-			"Subject":"",
-			"Message":"test",
-			"New":true,
-			"FolderID":"13",
-			"ContactID":"",
-			"ReceivedOn":"10-04-2012 9:06 AM"
-		}
-	}
-}
+== Configuration
+=== Proxy
 
-If you don't have any logger implementation in classpath you can simply use
-commons-logging SimpleLog which are shipped with EzTexting client. See example of usage below:
+Configuration:
 [source,java]
-System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.SimpleLog");
-System.setProperty("org.apache.commons.logging.simplelog.showdatetime", "true");
-System.setProperty("org.apache.commons.logging.simplelog.log.com.eztexting", "DEBUG");
+    RestApiClient.getClientConfig().Add(ClientConstants.PROXY_ADDRESS_PROPERTY, "localhost:3128");
+    RestApiClient.getClientConfig().Add(ClientConstants.PROXY_CREDENTIALS_PROPERTY, "proxyuser:proxypass");
+    // now create client
+    EzTextingClient client = new EzTextingClient("user", "pass");
+    Console.WriteLine("account balance: " + client.CreditsApi.CheckBalance());
+
+*IMPORTANT.* You must add proxy address property and proxy credentials (if needed) before client instantiation!
+
+Proxy address port is optional, 8080 is used by default.
+
+== Debug & logging
+In case you want to see requests/responses which client sends/receives from EzTexting platform you should copy
+*system.diagnostics* section from EzTextingApiClient.dll.config into your application's app.config file, then
+it will create eztexting-api-client.log file in your work directory with debug output.
+
+Source code debugging is available with a help of nuget symbolsource directory.
+Recommended configuration for Visual Studio:
+http://www.symbolsource.org/Public/Home/VisualStudio
+
+
+== Platform compatibility
+
+Library was built and tested on OS X with mono 4.2.1 .NET 4.5 and Windows 7 x64 .NET 4.5 platform
+
+
+== Troubleshooting
+In case you have an issue, please create a ticket at link:https://github.com/CallFire/eztexting-api-client-csharp/issues[Issues] page.
+Issue description should contain a brief info (including versions) about platform, IDE, .NET framework where this SDK is used.
+
+.What you should verify:
+ * EzTextingApiClient.dll.config file is placed next to .dll assembly
+ * System.Configuration is selected in project's references window
