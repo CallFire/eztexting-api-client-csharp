@@ -1,5 +1,4 @@
-﻿<?xml version="1.0"?>
-<package>
+<?xml version="1.0" encoding="UTF-8"?><package>
   <metadata>
     <id>EzTextingApiClient</id>
     <version>1.0.0</version>
@@ -15,19 +14,23 @@
     <description>C# client library for integration with EzTexting REST API services</description>
     <releaseNotes>EzTexting API client Changelog
 =============================
+
 Version 1.0.0 - Apr 15 2016
-    - initial release
+    - first release
 </releaseNotes>
     <copyright>Copyright (c) 2016 CallFire Inc.</copyright>
     <tags>eztexting rest api client</tags>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="8.0.3" />
-      <dependency id="RestSharp" version="105.2.3" />
+      <dependency id="Newtonsoft.Json" version="8.0.3"/>
+      <dependency id="RestSharp" version="105.2.3"/>
     </dependencies>
   </metadata>
   <files>
-    <file src="**/*.cs" target="src" />
-    <file src="LICENSE" />
-    <file src="Changelog" />
+    <file src="**/*.cs" target="src"/>
+    <file src="LICENSE"/>
+    <file src="Changelog"/>
+    <file src="src/EzTextingApiClient/bin/Release/EzTextingApiClient.dll" target="lib"/>
+    <file src="src/EzTextingApiClient/bin/Release/EzTextingApiClient.dll.config" target="lib"/>
+    <file src="src/EzTextingApiClient/bin/Release/EzTextingApiClient.xml" target="lib"/>
   </files>
 </package>
