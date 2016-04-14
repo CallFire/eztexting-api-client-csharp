@@ -6,9 +6,11 @@
 [Bb]in/
 packages/
 TestResults/
+build/
 
 # globs
 .idea/
+.gradle/
 .nuget/
 eztexting-api-client-csharp.sln.iml
 
