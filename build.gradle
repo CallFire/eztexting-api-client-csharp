@@ -10,7 +10,7 @@ plugins {
 }
 
 archivesBaseName = 'EzTextingApiClient'
-ext['buildConfiguration'] = OperatingSystem.current().unix ? 'Release' : 'Release'
+ext['buildConfiguration'] = System.properties[ 'BUILD_CONFIG' ] ?: "Release"
 ext['assemblyBinDir'] = "src/EzTextingApiClient/bin/$buildConfiguration"
 ext['buildDistDir'] = "$buildDir/dist"
 ext['assemblyInfo'] = "src/EzTextingApiClient/Properties/AssemblyInfo.cs"
@@ -43,14 +43,14 @@ task updateNuspecFile << {
     project.version = patchVersion(spec.metadata.version.text)
     spec.metadata.version = project.version
     spec.metadata.releaseNotes = file('Changelog').text
-    // cleanup previous lib/ files since they depend on build configuration
-    spec.files.file.findAll { it.@target == 'lib' }.each { it.replaceNode {} }
+    // cleanup previous lib/ and src/ files since they depend on build configuration
+    spec.files.file.findAll { it.@target == 'lib' || it.@target == 'src' }.each { it.replaceNode {} }
     spec.files.appendNode {
-        file(src: "$assemblyBinDir/${archivesBaseName}.dll", target: 'lib') {
-        }
-        file(src: "$assemblyBinDir/${archivesBaseName}.dll.config", target: 'lib') {
-        }
-        file(src: "$assemblyBinDir/${archivesBaseName}.xml", target: 'lib') {
+        file(src: "$assemblyBinDir/${archivesBaseName}.dll", target: 'lib') {}
+        file(src: "$assemblyBinDir/${archivesBaseName}.dll.config", target: 'lib') {}
+        file(src: "$assemblyBinDir/${archivesBaseName}.xml", target: 'lib') {}
+        if(buildConfiguration == 'Debug') {
+            file(src: "src/**/*.cs", target: 'src') {}
         }
     }
     XmlUtil.serialize(spec, new FileWriter('EzTextingApiClient.nuspec'))
@@ -85,7 +85,7 @@ nugetSpec.dependsOn updateNuspecFile
 
 nugetPack {
     destinationDir = buildDistDir
-    generateSymbols = true
+    generateSymbols = buildConfiguration == 'Debug'
 }
 nugetPack.dependsOn zipBinaries
 
