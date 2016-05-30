@@ -29,8 +29,8 @@ Version 1.0.0 - Apr 15 2016
     </dependencies>
   </metadata>
   <files>
-    <file src="LICENSE"/>
-    <file src="Changelog"/>
+    <file src="LICENSE.txt"/>
+    <file src="Changelog.txt"/>
     <file src="src/EzTextingApiClient/bin/Release/EzTextingApiClient.dll" target="lib"/>
     <file src="src/EzTextingApiClient/bin/Release/EzTextingApiClient.dll.config" target="lib"/>
     <file src="src/EzTextingApiClient/bin/Release/EzTextingApiClient.xml" target="lib"/>
