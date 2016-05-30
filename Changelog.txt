@@ -1,5 +1,8 @@
 EzTexting API client Changelog
 =============================
 
+Version 1.0.1 - May 30 2016
+    - package fixes
+
 Version 1.0.0 - Apr 15 2016
     - first release
