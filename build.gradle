@@ -42,7 +42,7 @@ task updateNuspecFile << {
 
     project.version = patchVersion(spec.metadata.version.text)
     spec.metadata.version = project.version
-    spec.metadata.releaseNotes = file('Changelog').text
+    spec.metadata.releaseNotes = file('Changelog.txt').text
     // cleanup previous lib/ and src/ files since they depend on build configuration
     spec.files.file.findAll { it.@target == 'lib' || it.@target == 'src' }.each { it.replaceNode {} }
     spec.files.appendNode {
@@ -73,8 +73,8 @@ def patchVersion(version) {
 
 task zipBinaries(type: Zip) {
     destinationDir = file(buildDistDir)
-    from 'LICENSE'
-    from 'Changelog'
+    from 'LICENSE.txt'
+    from 'Changelog.txt'
     from (assemblyBinDir) {
         include "${archivesBaseName}.*"
     }
