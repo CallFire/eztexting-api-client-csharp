@@ -167,6 +167,21 @@ namespace EzTextingApiClient
         {
             return Post<T>(path, null, queryParams);
         }
+        
+        /// <summary>
+        /// Performs POST request with file upload to specified path
+        /// </summary>
+        /// <typeparam name="T">The type of object to create and populate with the returned data.</typeparam>
+        /// <param name="path">relative API request path</param>
+        /// <param name="pathToFile">absolute path to file</param>
+        /// <returns>mapped object</returns>
+        /// <exception cref="EzTextingApiException">         in case HTTP response code is something different from codes listed above.</exception>
+        /// <exception cref="EzTextingClientException">      in case error has occurred in client.</exception>
+        public EzTextingResponse<T> PostFile<T>(string path, string pathToFile) where T : new()
+        {
+            Logger.Debug("POST request to {0} path to file: {1} ", path, pathToFile);
+            return DoRequest<EzTextingResponse<T>>(CreateRestRequestWithAttachedFile(path, Method.POST, pathToFile));
+        }
 
         /// <summary>
         /// Performs POST request with body to specified path
@@ -317,6 +332,23 @@ namespace EzTextingApiClient
             }
             request.AddHeader("Accept", ClientConstants.JsonContentType);
             request.Resource = requestPath.ToString();
+
+            return request;
+        }
+
+        private IRestRequest CreateRestRequestWithAttachedFile(string path, Method method, string pathToFile)
+        {
+            var request = new RestRequest
+            {
+                Method = method,
+                RequestFormat = DataFormat.Json,
+                JsonSerializer = _jsonSerializer,
+                Resource = path
+            };
+            request.AddHeader("Content-Type", "multipart/form-data");
+            request.AddParameter("User", _authentication.GetUsername());
+            request.AddParameter("Password", _authentication.GetPassword());
+            request.AddFileBytes("Source", File.ReadAllBytes(pathToFile), Path.GetFileName(pathToFile));
 
             return request;
         }

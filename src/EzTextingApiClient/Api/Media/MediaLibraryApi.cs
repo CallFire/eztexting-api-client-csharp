@@ -20,7 +20,7 @@ namespace EzTextingApiClient.Api.Media
         }
 
         /// <summary>
-        /// Create a new contact that will be stored in your Ez Texting media library
+        /// Create a new mediafile that will be stored in your Ez Texting media library
         /// </summary>
         /// <param name="url">url to download file</param>
         /// <returns>created media file object</returns>
@@ -29,6 +29,18 @@ namespace EzTextingApiClient.Api.Media
         public MediaFile Create(string url)
         {
             return _client.Post<MediaFile>(FilesPath, ClientUtils.AsParams("Source", url)).Entry;
+        }
+        
+        /// <summary>
+        /// Create a new mediafile that will be stored in your Ez Texting media library
+        /// </summary>
+        /// <param name="pathToFile">absolute path to file</param>
+        /// <returns>created media file object</returns>
+        /// <exception cref="EzTextingApiException">in case error has occurred on server side, check provided error description.</exception>
+        /// <exception cref="EzTextingClientException">in case error has occurred in client.</exception>
+        public MediaFile Upload(string pathToFile)
+        {
+            return _client.PostFile<MediaFile>(FilesPath, pathToFile).Entry;
         }
 
         /// <summary>
