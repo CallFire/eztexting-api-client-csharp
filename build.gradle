@@ -2,11 +2,11 @@ import org.gradle.internal.os.OperatingSystem
 import groovy.xml.XmlUtil
 
 plugins {
-  id 'com.ullink.msbuild' version '2.21'
-  id 'com.ullink.nuget' version '2.16'
-  id 'com.ullink.nunit' version '1.12'
-  id 'com.ullink.opencover' version '1.9'
-  id 'net.researchgate.release' version '2.7.0'
+  id 'com.ullink.msbuild' version '2.14'
+  id 'com.ullink.nuget' version '2.12'
+  id 'com.ullink.nunit' version '1.4'
+  id 'com.ullink.opencover' version '1.2'
+  id 'net.researchgate.release' version '2.3.4'
 }
 
 archivesBaseName = 'EzTextingApiClient'
@@ -18,8 +18,7 @@ ext['assemblyInfo'] = "src/EzTextingApiClient/Properties/AssemblyInfo.cs"
 defaultTasks('nugetPack')
 
 nuget {
-    // oh boy, version 3.3.0 seems to freeze during restore on linux ... rollbacking.... again
-    version = '2.8.6'
+    version = '4.4.0'
 }
 
 msbuild.dependsOn nugetRestore
@@ -95,6 +94,7 @@ nugetPack.dependsOn zipBinaries
 
 // nuget package upload, requires API key to be set
 nugetPush {
+    serverUrl = 'https://www.nuget.org/api/v2/package'
     apiKey = System.properties[ 'NUGET_API_KEY' ] ?: "key not set"
     nupkgFile = nugetPack.packageFile
 }
