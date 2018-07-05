@@ -7,6 +7,7 @@ plugins {
   id 'com.ullink.nunit' version '1.4'
   id 'com.ullink.opencover' version '1.2'
   id 'net.researchgate.release' version '2.3.4'
+  id "co.riiid.gradle" version '0.4.2'
 }
 
 archivesBaseName = 'EzTextingApiClient'
@@ -97,4 +98,46 @@ nugetPush {
     serverUrl = 'https://www.nuget.org/api/v2/package'
     apiKey = System.properties[ 'NUGET_API_KEY' ] ?: "key not set"
     nupkgFile = nugetPack.packageFile
+}
+
+task prepareReleaseData {
+    doLast {
+        try { 
+            println("${gitHubOwner}")
+            println("${gitHubToken}")
+        } catch(Exception ex) {
+            println("GitHub Owner and/or Token are empty, you can't run github release task, set them with -PgitHubOwner/-PgitHubToken options")
+        }
+    }
+}
+prepareReleaseData.dependsOn nugetPack
+
+task configureCustomGitHubRelease {
+    doLast {
+        github {
+            owner = "${gitHubOwner}"
+            repo = 'eztexting-api-client-csharp'
+            token = "${gitHubToken}"
+            tagName = project.version
+            targetCommitish = 'master'
+            name = project.version
+            body = releaseDescription()
+            assets = [
+                'build/dist/EzTextingApiClient-' + project.version + '.zip',
+                'build/dist/EzTextingApiClient.' + project.version + '.nupkg'
+            ]
+        }
+    }
+}
+configureCustomGitHubRelease.dependsOn prepareReleaseData
+githubRelease.dependsOn configureCustomGitHubRelease
+
+def releaseDescription() {
+    String releaseNotes = file("Changelog.txt").text
+    String firstVersionEntry = releaseNotes.find(~/Version.*/)
+    Integer start = releaseNotes.indexOf(firstVersionEntry) + firstVersionEntry.size()
+    releaseNotes = releaseNotes.substring(start, releaseNotes.size())
+    String secondVersionEntry = releaseNotes.find(~/Version.*/)
+    String currentReleaseChanges = releaseNotes.substring(0, (secondVersionEntry == null ? releaseNotes.size() - 1 : releaseNotes.indexOf(secondVersionEntry))).trim()
+    "$currentReleaseChanges"
 }

@@ -1,5 +1,8 @@
 EzTexting API client Changelog
 =============================
+Version 1.1.1 - July 05 2018
+    - added script for automatic release uploading to github
+
 Version 1.1.0 - May 23 2018
     - added file upload to create media file API
 
