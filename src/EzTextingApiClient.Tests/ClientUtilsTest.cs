@@ -6,7 +6,6 @@ using EzTextingApiClient.Api.Messaging.Model;
 using NUnit.Framework;
 using RestSharp.Extensions;
 using System.Collections.Generic;
-using EzTextingApiClient.Api.Toolbox.Model;
 using SortProperty = EzTextingApiClient.Api.Groups.Model.SortProperty;
 
 namespace EzTextingApiClient.Tests

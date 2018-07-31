@@ -8,7 +8,6 @@ using EzTextingApiClient.Api.Media;
 using EzTextingApiClient.Api.Messaging;
 using EzTextingApiClient.Api.Toolbox;
 using EzTextingApiClient.Auth;
-using RestSharp.Authenticators;
 
 namespace EzTextingApiClient
 {
