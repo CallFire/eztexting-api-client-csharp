@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><package>
   <metadata>
     <id>EzTextingApiClient</id>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <title>EzTexting REST API client</title>
     <authors>
 			Vladimir Mikhailov
@@ -14,9 +14,12 @@
     <description>C# client library for integration with EzTexting REST API services</description>
     <releaseNotes>EzTexting API client Changelog
 =============================
+Version 1.1.2 - July 31 2018
+    - updated .NET framework target version to latest for support TLS 1.2 by default
+
 Version 1.1.1 - July 05 2018
-    - added script for automatic release uploading to github        
-        
+    - added script for automatic release uploading to github
+
 Version 1.1.0 - May 23 2018
     - added file upload to create media file API
 
