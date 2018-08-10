@@ -1,5 +1,8 @@
 EzTexting API client Changelog
 =============================
+Version 1.1.3 - August 10 2018
+    - added StrongNamer library to sign unsigned assembly in a nuget package
+
 Version 1.1.2 - July 31 2018
     - updated .NET framework target version to latest for support TLS 1.2 by default
 
