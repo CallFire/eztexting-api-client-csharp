@@ -103,10 +103,11 @@
     <Content Include="EzTextingApiClient.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
+  </ItemGroup>  
   <ItemGroup>
     <EmbeddedResource Include="Resources\File-examples\train1.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
+  <Import Project="..\..\packages\StrongNamer.0.0.7\build\StrongNamer.targets" Condition="Exists('..\..\packages\StrongNamer.0.0.7\build\StrongNamer.targets')" />
 </Project>
