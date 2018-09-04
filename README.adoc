@@ -4,11 +4,11 @@ C# client for EzTexting platform API. See link:docs/GettingStarted.adoc[Getting 
  page for setup instructions.
 
 .*Requirements:*
-* .NET 4.5+
+* .NET 4.6+
 
 .*Dependencies:*
 * Newtonsoft.Json >= 8.0.3
-* RestSharp >= 105.2.3
+* RestSharp >= 106.3.0
 
 .*Table of contents*
 * link:docs/GettingStarted.adoc[Getting Started]
