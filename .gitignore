@@ -1,6 +1,10 @@
 ﻿#Autosave files
 *~
 
+
+# Visual Studio 2015 cache/options directory
+.vs/
+
 #build
 [Oo]bj/
 [Bb]in/

@@ -12,6 +12,7 @@ using System.Net;
 using EzTextingApiClient.Api.Common.Model;
 using EzTextingApiClient.Auth;
 using RestSharp.Extensions;
+using System.Reflection;
 
 namespace EzTextingApiClient
 {
@@ -110,7 +111,8 @@ namespace EzTextingApiClient
         /// </summary>
         public static KeyValueConfigurationCollection LoadAppSettings()
         {
-            var path = typeof(RestApiClient).Assembly.Location;
+            //var path = typeof(RestApiClient).Assembly.Location;
+            var path = new Uri(Assembly.GetExecutingAssembly().GetName().CodeBase).LocalPath;
             var config = ConfigurationManager.OpenExeConfiguration(path);
             var appSettings = (AppSettingsSection) config.GetSection("appSettings");
             if (appSettings.Settings.Count < 4)
