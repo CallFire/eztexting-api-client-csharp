@@ -1,5 +1,8 @@
 EzTexting API client Changelog
 =============================
+Version 1.1.32 - Oct 23 2018
+    - changed how .dll.config file path is located
+
 Version 1.1.31 - Sept 04 2018
     - updated version of RestSharp client to 106.3.0
     - downgraded version of .NET framework to 4.6
